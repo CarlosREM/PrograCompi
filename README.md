@@ -1,4 +1,4 @@
-# Proyecto Programado 1, API Creador de Personajes - Compiladores e Interpretes
+# Proyecto Programado 1 - Compiladores e Interpretes
 
 **Profesor:** Ignacio Trejos Zelaya
 
