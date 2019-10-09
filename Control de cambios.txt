@@ -1,0 +1,7 @@
+8/10/19
+
+Token.java 
+Se añadieron las siguientes palabras reservadas:
+AND,FOR,INIT,LOCAL,LOOP,RECURSIVE,REPEAT,SKIP,TO,UNTIL
+Y en tokenTable:
+"and", "for", "init", "local", "loop", "recursive", "repeat", "skip", "to", "until"
