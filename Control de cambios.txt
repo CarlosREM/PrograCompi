@@ -5,3 +5,14 @@ Se añadieron las siguientes palabras reservadas:
 AND,FOR,INIT,LOCAL,LOOP,RECURSIVE,REPEAT,SKIP,TO,UNTIL
 Y en tokenTable:
 "and", "for", "init", "local", "loop", "recursive", "repeat", "skip", "to", "until"
+
+9/10/19
+Parser.java
+Cambios a los cases del switch de parseSingleCommand.
+Se añaden los Token anteriores.
+
+Se crean clases ForCommand,DoWhileCommand,DoUntilCommand,UntilCommand
+
+Visitor.java
+Se añaden a Visitor los métodos para visitar los comandos anteriores.
+
