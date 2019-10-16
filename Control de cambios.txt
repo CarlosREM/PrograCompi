@@ -39,3 +39,5 @@ Se añaden los métodos "visitForCommand", "visitUntilCommand", "visitDoUntilComma
 WriterVisitor.java
 Se implementan los metodos "visitForCommand", "visitUntilCommand", "visitDoUntilCommand", "visitDoWhileCommand", "visitInitializedVarDeclaration", "visitLocalDeclaration", "visitProcFuncsDeclaration", "visitProcFuncDeclaration"
 Para generar el xml
+
+Visitor.java
