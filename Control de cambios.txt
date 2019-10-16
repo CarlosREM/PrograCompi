@@ -33,3 +33,9 @@ Se añade el método parseCompoundDeclaration
 
 Visitor.java
 Se añaden los métodos "visitForCommand", "visitUntilCommand", "visitDoUntilCommand", "visitDoWhileCommand", "visitInitializedVarDeclaration", "visitLocalDeclaration", "visitProcFuncsDeclaration", "visitProcFuncDeclaration"
+
+15/10/2019
+
+WriterVisitor.java
+Se implementan los metodos "visitForCommand", "visitUntilCommand", "visitDoUntilCommand", "visitDoWhileCommand", "visitInitializedVarDeclaration", "visitLocalDeclaration", "visitProcFuncsDeclaration", "visitProcFuncDeclaration"
+Para generar el xml
