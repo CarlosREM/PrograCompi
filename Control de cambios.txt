@@ -36,8 +36,35 @@ Se añaden los métodos "visitForCommand", "visitUntilCommand", "visitDoUntilComma
 
 15/10/2019
 
+ProyectoNetBeans
+Se siguio el manual paso a paso para dejar el IDE funcional.
+
+Se crea HTMLGenerator.java
+
 WriterVisitor.java
 Se implementan los metodos "visitForCommand", "visitUntilCommand", "visitDoUntilCommand", "visitDoWhileCommand", "visitInitializedVarDeclaration", "visitLocalDeclaration", "visitProcFuncsDeclaration", "visitProcFuncDeclaration"
 Para generar el xml
 
+TableVisitor.java
+Se implementan métodos abstractos de los import de AbstractSyntaxTrees:
+"visitForCommand", "visitUntilCommand", "visitDoUntilCommand", "visitDoWhileCommand", "visitInitializedVarDeclaration", "visitLocalDeclaration", "visitProcFuncsDeclaration", "visitProcFuncDeclaration"
+Todas las implementaciones con return null.
+
+TreeVisitor.java
+Se implemetan los metódos abstractos de AbstractSyntaxTrees:
+"visitForCommand", "visitUntilCommand", "visitDoUntilCommand", "visitDoWhileCommand", "visitInitializedVarDeclaration", "visitLocalDeclaration", "visitProcFuncsDeclaration", "visitProcFuncDeclaration"
+Retornan unary, binary, ternary o quaternary.
+
+Compiler.java
+Se agrega un atributo Writer.
+
+Parser.java
+Se modifican ciertos errores a la hora de parsear.
+Se cambia a currentToken.kind == Token.blah
+currenteToken a currentToken
+
+Scanner.java
+Se agrega el htmlGenerator.
+
 Visitor.java
+Se corrigen typos de object a Object
