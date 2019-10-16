@@ -16,3 +16,20 @@ Se crean clases ForCommand,DoWhileCommand,DoUntilCommand,UntilCommand
 Visitor.java
 Se añaden a Visitor los métodos para visitar los comandos anteriores.
 
+10/10/19
+Se crean las clases:
+InitializedVarDeclaration, ProcFuncDeclaration, ProcFunsDeclaration, LocalDeclaration
+
+Se modifican las clases:
+Parser.java
+Se modifica parseSingleCommand:
+> Se eliminan los casos de BEGIN, EOT
+> Se modifican los casos de LET, IF, 
+> Se añaden los casos de LOOP (WHILE, UNTIL, DO, FOR), SKIP
+Se modifica parseDeclaration
+Se modifica parseSingleDeclaration
+> Se modifican los casos de VAR, PROC
+Se añade el método parseCompoundDeclaration
+
+Visitor.java
+Se añaden los métodos "visitForCommand", "visitUntilCommand", "visitDoUntilCommand", "visitDoWhileCommand", "visitInitializedVarDeclaration", "visitLocalDeclaration", "visitProcFuncsDeclaration", "visitProcFuncDeclaration"
