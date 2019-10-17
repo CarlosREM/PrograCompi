@@ -67,13 +67,13 @@ import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
-import Triangle.AbstractSyntaxTrees.WhileCommand;
-import Triangle.AbstractSyntaxTrees.ForCommand;
-import Triangle.AbstractSyntaxTrees.UntilCommand;
-import Triangle.AbstractSyntaxTrees.DoUntilCommand;
-import Triangle.AbstractSyntaxTrees.DoWhileCommand;
 import Triangle.AbstractSyntaxTrees.InitializedVarDeclaration;
 import Triangle.AbstractSyntaxTrees.LocalDeclaration;
+import Triangle.AbstractSyntaxTrees.LoopDoUntilCommand;
+import Triangle.AbstractSyntaxTrees.LoopDoWhileCommand;
+import Triangle.AbstractSyntaxTrees.LoopForCommand;
+import Triangle.AbstractSyntaxTrees.LoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.LoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ProcFuncsDeclaration;
 import Triangle.AbstractSyntaxTrees.ProcFuncDeclaration;
 import java.io.FileOutputStream;
@@ -137,11 +137,11 @@ public class WriterVisitor implements Visitor {
         return null;
     }
 
-    public Object visitWhileCommand(WhileCommand ast, Object obj) {
-        writeLineHTML("<WhileCommand>");
+    public Object visitLoopWhileCommand(LoopWhileCommand ast, Object obj) {
+        writeLineHTML("<LoopWhileCommand>");
         ast.E.visit(this, null);
         ast.C.visit(this, null);
-        writeLineHTML("</WhileCommand>");
+        writeLineHTML("</LoopWhileCommand>");
         return null;
     }
 
@@ -586,34 +586,34 @@ public class WriterVisitor implements Visitor {
         else
             return operator;
     }
-    public Object visitForCommand(ForCommand ast, Object obj) {
-        writeLineHTML("<ForCommand>");
+    public Object visitLoopForCommand(LoopForCommand ast, Object obj) {
+        writeLineHTML("<LoopForCommand>");
         ast.I.visit(this, null);
         ast.E.visit(this, null);
         ast.E2.visit(this,null);
         ast.C.visit(this,null);
-        writeLineHTML("</ForCommand>");
+        writeLineHTML("</LoopForCommand>");
         return null;
     }
-    public Object visitUntilCommand(UntilCommand ast, Object obj) {
-        writeLineHTML("<UntilCommand>");
+    public Object visitLoopUntilCommand(LoopUntilCommand ast, Object obj) {
+        writeLineHTML("<LoopUntilCommand>");
         ast.E.visit(this, null);
         ast.C.visit(this,null);
-        writeLineHTML("</UntilCommand>");
+        writeLineHTML("</LoopUntilCommand>");
         return null;
     }
-    public Object visitDoUntilCommand(DoUntilCommand ast, Object obj) {
-        writeLineHTML("<DoUntilCommand>");
+    public Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object obj) {
+        writeLineHTML("<LoopDoUntilCommand>");
         ast.E.visit(this, null);
         ast.C.visit(this,null);
-        writeLineHTML("</DoUntilCommand>");
+        writeLineHTML("</LoopDoUntilCommand>");
         return null;
     }
-    public Object visitDoWhileCommand(DoWhileCommand ast, Object obj) {
-        writeLineHTML("<DoWhileCommand>");
+    public Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object obj) {
+        writeLineHTML("<LoopDoWhileCommand>");
         ast.E.visit(this, null);
         ast.C.visit(this,null);
-        writeLineHTML("</DoWhileCommand>");
+        writeLineHTML("</LoopDoWhileCommand>");
         return null;
     }
     public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object obj) {

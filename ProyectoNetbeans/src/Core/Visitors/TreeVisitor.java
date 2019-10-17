@@ -20,15 +20,12 @@ import Triangle.AbstractSyntaxTrees.CharacterLiteral;
 import Triangle.AbstractSyntaxTrees.ConstActualParameter;
 import Triangle.AbstractSyntaxTrees.ConstDeclaration;
 import Triangle.AbstractSyntaxTrees.ConstFormalParameter;
-import Triangle.AbstractSyntaxTrees.DoUntilCommand;
-import Triangle.AbstractSyntaxTrees.DoWhileCommand;
 import Triangle.AbstractSyntaxTrees.DotVname;
 import Triangle.AbstractSyntaxTrees.EmptyActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.EmptyCommand;
 import Triangle.AbstractSyntaxTrees.EmptyExpression;
 import Triangle.AbstractSyntaxTrees.EmptyFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.ErrorTypeDenoter;
-import Triangle.AbstractSyntaxTrees.ForCommand;
 import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
@@ -42,6 +39,11 @@ import Triangle.AbstractSyntaxTrees.IntegerLiteral;
 import Triangle.AbstractSyntaxTrees.LetCommand;
 import Triangle.AbstractSyntaxTrees.LetExpression;
 import Triangle.AbstractSyntaxTrees.LocalDeclaration;
+import Triangle.AbstractSyntaxTrees.LoopDoUntilCommand;
+import Triangle.AbstractSyntaxTrees.LoopDoWhileCommand;
+import Triangle.AbstractSyntaxTrees.LoopForCommand;
+import Triangle.AbstractSyntaxTrees.LoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.LoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.MultipleActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.MultipleArrayAggregate;
 import Triangle.AbstractSyntaxTrees.MultipleFieldTypeDenoter;
@@ -69,13 +71,11 @@ import Triangle.AbstractSyntaxTrees.SubscriptVname;
 import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
-import Triangle.AbstractSyntaxTrees.UntilCommand;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
-import Triangle.AbstractSyntaxTrees.WhileCommand;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -104,23 +104,8 @@ public class TreeVisitor implements Visitor {
         return(createBinary("Call Command", ast.I, ast.APS));
     }
     
-    @Override
-    public Object visitDoUntilCommand(DoUntilCommand ast, Object o) {
-        return(createBinary("Do Until Command", ast.E, ast.C));
-    }
-    
-    @Override
-    public Object visitDoWhileCommand(DoWhileCommand ast, Object o) {
-        return (createBinary("Do While Command", ast.E, ast.C));
-    }
-    
     public Object visitEmptyCommand(EmptyCommand ast, Object o) {
         return(createNullary("Empty Command"));
-    }
-    
-    @Override
-    public Object visitForCommand(ForCommand ast, Object o) {
-        return (createQuaternary("For Command", ast.I, ast.E, ast.E2, ast.C));
     }
     
     public Object visitIfCommand(IfCommand ast, Object obj) {
@@ -131,17 +116,32 @@ public class TreeVisitor implements Visitor {
         return(createBinary("Let Command", ast.D, ast.C));
     }
     
-    public Object visitSequentialCommand(SequentialCommand ast, Object obj) {
-        return(createBinary("Sequential Command", ast.C1, ast.C2));
+    @Override
+    public Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o) {
+        return(createBinary("Loop Do Until Command", ast.E, ast.C));
     }
     
     @Override
-    public Object visitUntilCommand(UntilCommand ast, Object o) {
-        return (createBinary("Until Command", ast.E, ast.C));
+    public Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object o) {
+        return (createBinary("Loop Do While Command", ast.E, ast.C));
     }
     
-    public Object visitWhileCommand(WhileCommand ast, Object obj) {
-        return(createBinary("While Command", ast.E, ast.C));
+    @Override
+    public Object visitLoopForCommand(LoopForCommand ast, Object o) {
+        return (createQuaternary("Loop For Command", ast.I, ast.E, ast.E2, ast.C));
+    }
+    
+    @Override
+    public Object visitLoopUntilCommand(LoopUntilCommand ast, Object o) {
+        return (createBinary("Loop Until Command", ast.E, ast.C));
+    }
+    
+    public Object visitLoopWhileCommand(LoopWhileCommand ast, Object obj) {
+        return(createBinary("Loop While Command", ast.E, ast.C));
+    }
+    
+    public Object visitSequentialCommand(SequentialCommand ast, Object obj) {
+        return(createBinary("Sequential Command", ast.C1, ast.C2));
     }
    
     // </editor-fold>
@@ -486,6 +486,4 @@ public class TreeVisitor implements Visitor {
         return(t);             
     }
     // </editor-fold>
-
-    
 }

@@ -2,9 +2,9 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public class ForCommand extends Command {
+public class LoopForCommand extends Command {
 
-  public ForCommand (Identifier iAST, Expression eAST, Expression eAST2, Command cAST, SourcePosition thePosition) {
+  public LoopForCommand (Identifier iAST, Expression eAST, Expression eAST2, Command cAST, SourcePosition thePosition) {
     super (thePosition);
     I = iAST;
 	E = eAST;
@@ -13,7 +13,7 @@ public class ForCommand extends Command {
   }
 
   public Object visit(Visitor v, Object o) {
-    return v.visitForCommand(this, o);
+    return v.visitLoopForCommand(this, o);
   }
 
   public Identifier I;

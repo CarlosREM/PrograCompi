@@ -23,7 +23,7 @@ public class Writer {
 
     public Writer(String fileName) {
         this.fileName = fileName.replaceFirst("[.][^.]+$", "") + ".xml";
-        file = new File(fileName);
+        file = new File(this.fileName);
     }
 
     // Draw the AST representing a complete program.

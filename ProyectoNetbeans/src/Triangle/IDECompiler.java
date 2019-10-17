@@ -56,8 +56,9 @@ public class IDECompiler {
         boolean success = false;
         
         rootAST = parser.parseProgram();
-        writerXML.write(rootAST);
+        
         if (report.numErrors == 0) {
+            writerXML.write(rootAST);//Cambios
             //System.out.println("Contextual Analysis ...");
             //Checker checker = new Checker(report);
             //checker.check(rootAST);

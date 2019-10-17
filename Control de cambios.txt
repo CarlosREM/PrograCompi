@@ -68,3 +68,12 @@ Se agrega el htmlGenerator.
 
 Visitor.java
 Se corrigen typos de object a Object
+
+16/10/2019
+TreeVisitor.java
+Se cambian los commands por:
+"visitLoopDoUntilCommand","visitLoopDoWhileCommand","visitLoopForCommand",
+"visitLoopUntilCommand","visitLoopWhileCommand"
+
+
+

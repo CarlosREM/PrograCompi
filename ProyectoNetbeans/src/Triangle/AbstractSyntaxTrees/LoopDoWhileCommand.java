@@ -2,16 +2,16 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public class UntilCommand extends Command {
+public class LoopDoWhileCommand extends Command {
 
-  public UntilCommand (Expression eAST, Command cAST, SourcePosition thePosition) {
+  public LoopDoWhileCommand (Command cAST, Expression eAST, SourcePosition thePosition) {
     super (thePosition);
     E = eAST;
     C = cAST;
   }
 
   public Object visit(Visitor v, Object o) {
-    return v.visitUntilCommand(this, o);
+    return v.visitLoopDoWhileCommand(this, o);
   }
 
   public Expression E;
