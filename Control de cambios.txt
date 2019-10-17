@@ -1,4 +1,4 @@
-8/10/19
+-----------------------------------------------------------8/10/19-------------------------------------------------
 
 Token.java 
 Se añadieron las siguientes palabras reservadas:
@@ -16,7 +16,7 @@ Se crean clases ForCommand,DoWhileCommand,DoUntilCommand,UntilCommand
 Visitor.java
 Se añaden a Visitor los métodos para visitar los comandos anteriores.
 
-10/10/19
+------------------------------------------------------------10/10/19------------------------------------------------
 Se crean las clases:
 InitializedVarDeclaration, ProcFuncDeclaration, ProcFunsDeclaration, LocalDeclaration
 
@@ -34,7 +34,7 @@ Se añade el método parseCompoundDeclaration
 Visitor.java
 Se añaden los métodos "visitForCommand", "visitUntilCommand", "visitDoUntilCommand", "visitDoWhileCommand", "visitInitializedVarDeclaration", "visitLocalDeclaration", "visitProcFuncsDeclaration", "visitProcFuncDeclaration"
 
-15/10/2019
+-------------------------------------------------------------15/10/2019------------------------------------------------
 
 ProyectoNetBeans
 Se siguio el manual paso a paso para dejar el IDE funcional.
@@ -69,11 +69,19 @@ Se agrega el htmlGenerator.
 Visitor.java
 Se corrigen typos de object a Object
 
-16/10/2019
+--------------------------------------------------------------16/10/2019-----------------------------------------------------------
 TreeVisitor.java
+Visitor.java
 Se cambian los commands por:
 "visitLoopDoUntilCommand","visitLoopDoWhileCommand","visitLoopForCommand",
 "visitLoopUntilCommand","visitLoopWhileCommand"
 
+Parser.java
+Se eliminan los cases:
+Token.SEMICOLON, Token.END, Token.ELSE, Token.IN del Token.LOOP
+Se coloca acceptIt() en Token.SKIP
 
-
+IDECompilar.java
+Se mueve la linea
+writerXML.write(rootAST);
+a (if de report.numErrors == 0)
