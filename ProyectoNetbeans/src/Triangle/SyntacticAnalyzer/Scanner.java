@@ -50,7 +50,7 @@ public final class Scanner {
     sourceFile = source;
     currentChar = sourceFile.getSource();
     debug = false;
-	htmlGenerator = new HTMLGenerator(sourceFile.sourceFile.getName());
+	htmlGenerator = new HTMLGenerator(source.fileName);
   }
 
   public void enableDebugging() {

@@ -22,12 +22,14 @@ public class SourceFile {
   java.io.File sourceFile;
   java.io.FileInputStream source;
   int currentLine;
+  public String fileName;
 
   public SourceFile(String filename) {
     try {
       sourceFile = new java.io.File(filename);
       source = new java.io.FileInputStream(sourceFile);
       currentLine = 1;
+      this.fileName = filename;
     }
     catch (java.io.IOException s) {
       sourceFile = null;
