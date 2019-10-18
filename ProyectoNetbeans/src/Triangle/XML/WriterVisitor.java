@@ -72,10 +72,12 @@ import Triangle.AbstractSyntaxTrees.LocalDeclaration;
 import Triangle.AbstractSyntaxTrees.LoopDoUntilCommand;
 import Triangle.AbstractSyntaxTrees.LoopDoWhileCommand;
 import Triangle.AbstractSyntaxTrees.LoopForCommand;
+import Triangle.AbstractSyntaxTrees.LoopForIteratorDeclaration;
 import Triangle.AbstractSyntaxTrees.LoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.LoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ProcFuncsDeclaration;
 import Triangle.AbstractSyntaxTrees.ProcFuncDeclaration;
+import Triangle.AbstractSyntaxTrees.RecursiveDeclaration;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -588,13 +590,18 @@ public class WriterVisitor implements Visitor {
     }
     public Object visitLoopForCommand(LoopForCommand ast, Object obj) {
         writeLineHTML("<LoopForCommand>");
-        ast.I.visit(this, null);
+        ast.D.visit(this, null);
         ast.E.visit(this, null);
-        ast.E2.visit(this,null);
         ast.C.visit(this,null);
         writeLineHTML("</LoopForCommand>");
         return null;
     }
+    
+    @Override
+    public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public Object visitLoopUntilCommand(LoopUntilCommand ast, Object obj) {
         writeLineHTML("<LoopUntilCommand>");
         ast.E.visit(this, null);
@@ -616,6 +623,7 @@ public class WriterVisitor implements Visitor {
         writeLineHTML("</LoopDoWhileCommand>");
         return null;
     }
+    
     public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object obj) {
         writeLineHTML("<InitializedVarDeclaration>");
         ast.I.visit(this, null);
@@ -640,11 +648,20 @@ public class WriterVisitor implements Visitor {
         return null;
     }
 
-	public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object obj) {
+    public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object obj) {
         writeLineHTML("<ProcFuncDeclaration>");
         ast.declaration.visit(this, null);
         writeLineHTML("</ProcFuncDeclaration>");
         return null;
     }
+        
+    @Override
+    public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
+        writeLineHTML("<RecursiveDeclaration>");
+        ast.d.visit(this, null);
+        writeLineHTML("</RecursiveDeclaration>");
+        return null;
+    }
+
 
 }

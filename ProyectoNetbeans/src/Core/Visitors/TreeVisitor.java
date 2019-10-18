@@ -42,6 +42,7 @@ import Triangle.AbstractSyntaxTrees.LocalDeclaration;
 import Triangle.AbstractSyntaxTrees.LoopDoUntilCommand;
 import Triangle.AbstractSyntaxTrees.LoopDoWhileCommand;
 import Triangle.AbstractSyntaxTrees.LoopForCommand;
+import Triangle.AbstractSyntaxTrees.LoopForIteratorDeclaration;
 import Triangle.AbstractSyntaxTrees.LoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.LoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.MultipleActualParameterSequence;
@@ -58,6 +59,7 @@ import Triangle.AbstractSyntaxTrees.ProcFuncsDeclaration;
 import Triangle.AbstractSyntaxTrees.Program;
 import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
+import Triangle.AbstractSyntaxTrees.RecursiveDeclaration;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
 import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
 import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
@@ -128,7 +130,7 @@ public class TreeVisitor implements Visitor {
     
     @Override
     public Object visitLoopForCommand(LoopForCommand ast, Object o) {
-        return (createQuaternary("Loop For Command", ast.I, ast.E, ast.E2, ast.C));
+        return (createTernary("Loop For Command", ast.D, ast.E, ast.C));
     }
     
     @Override
@@ -217,6 +219,11 @@ public class TreeVisitor implements Visitor {
         return (createBinary("Local Declaration", ast.d1, ast.d2));
     }
     
+    @Override
+    public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
+        return (createBinary("Loop For Iterator Declaration", ast.I, ast.E));
+    }
+    
     public Object visitProcDeclaration(ProcDeclaration ast, Object obj) {
         return(createTernary("Procedure Declaration", ast.I, ast.FPS, ast.C));        
     }
@@ -229,6 +236,11 @@ public class TreeVisitor implements Visitor {
     @Override
     public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o) {
         return (createUnary("Proc Funcs Declaration", ast.declaration));
+    }
+    
+    @Override
+    public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
+        return (createUnary("Recursive Declaration",ast.d));
     }
     
     public Object visitSequentialDeclaration(SequentialDeclaration ast, Object obj) {
@@ -486,4 +498,6 @@ public class TreeVisitor implements Visitor {
         return(t);             
     }
     // </editor-fold>
+
+    
 }

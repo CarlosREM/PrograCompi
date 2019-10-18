@@ -4,20 +4,18 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
 
 public class LoopForCommand extends Command {
 
-  public LoopForCommand (Identifier iAST, Expression eAST, Expression eAST2, Command cAST, SourcePosition thePosition) {
+  public LoopForCommand (Declaration dAST, Expression eAST, Command cAST, SourcePosition thePosition) {
     super (thePosition);
-    I = iAST;
-	E = eAST;
-    E2 = eAST2;
-	C = cAST;
+    D = dAST;
+    E = eAST;
+    C = cAST;
   }
 
   public Object visit(Visitor v, Object o) {
     return v.visitLoopForCommand(this, o);
   }
 
-  public Identifier I;
+  public Declaration D;
   public Expression E;
-  public Expression E2;
   public Command C;
 }

@@ -55,6 +55,8 @@ public interface Visitor {
   public abstract Object visitLocalDeclaration(LocalDeclaration ast, Object o);
   public abstract Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o);
   public abstract Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o);
+  public abstract Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o);
+  public abstract Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o);
 
   // Array Aggregates
   public abstract Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object o);

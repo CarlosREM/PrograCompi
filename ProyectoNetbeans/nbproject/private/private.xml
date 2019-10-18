@@ -6,15 +6,24 @@
         <group>
             <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/SyntacticAnalyzer/Scanner.java</file>
             <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/IDECompiler.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/Visitor.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/XML/WriterVisitor.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/CodeGenerator/Encoder.java</file>
             <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Core/Visitors/TableVisitor.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/Compiler.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/LoopDoUntilCommand.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/Declaration.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/LocalDeclaration.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/LoopDoWhileCommand.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/LoopForCommand.java</file>
             <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Core/Visitors/TreeVisitor.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/XML/Writer.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/LoopForIteratorDeclaration.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/ContextualAnalyzer/Checker.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/LoopUntilCommand.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/XML/WriterVisitor.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/ConstDeclaration.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/ProcFuncDeclaration.java</file>
             <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/SyntacticAnalyzer/Parser.java</file>
             <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/GUI/Main.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/XML/Writer.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/RecursiveDeclaration.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/Progra1Compi/PrograCompi1/ProyectoNetbeans/src/Triangle/TreeDrawer/LayoutVisitor.java</file>
         </group>
     </open-files>
 </project-private>
