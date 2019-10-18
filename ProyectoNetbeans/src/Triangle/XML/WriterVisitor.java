@@ -599,7 +599,11 @@ public class WriterVisitor implements Visitor {
     
     @Override
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        writeLineHTML("<LoopForIteratorDeclaration>");
+        ast.I.visit(this, null);
+        ast.E.visit(this, null);
+        writeLineHTML("</LoopForIteratorDeclaration>");
+        return null;
     }
     
     public Object visitLoopUntilCommand(LoopUntilCommand ast, Object obj) {
