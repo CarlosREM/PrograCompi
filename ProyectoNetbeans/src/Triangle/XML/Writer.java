@@ -29,7 +29,6 @@ public class Writer {
     // Draw the AST representing a complete program.
     public void write(Program ast) {
         // Prepare the file to write
-        System.out.println("holaaaaaaaa");
         try {
             fileWriter = new FileOutputStream(file);
 

@@ -362,17 +362,17 @@ public class Parser {
                     acceptIt();
                     Command cAST = parseCommand();
                     if(currentToken.kind == Token.WHILE){
-                            acceptIt();
-                            Expression eAST = parseExpression();
-                            accept(Token.REPEAT);
-                            finish(commandPos);
-                            commandAST = new LoopDoWhileCommand(cAST, eAST, commandPos);
+                        acceptIt();
+                        Expression eAST = parseExpression();
+                        accept(Token.REPEAT);
+                        finish(commandPos);
+                        commandAST = new LoopDoWhileCommand(cAST, eAST, commandPos);
                     }else if (currentToken.kind == Token.UNTIL){
-                            acceptIt();
-                            Expression eAST = parseExpression();
-                            accept(Token.REPEAT);
-                            finish(commandPos);
-                            commandAST = new LoopDoUntilCommand(cAST, eAST, commandPos);
+                        acceptIt();
+                        Expression eAST = parseExpression();
+                        accept(Token.REPEAT);
+                        finish(commandPos);
+                        commandAST = new LoopDoUntilCommand(cAST, eAST, commandPos);
                     }else{
                             syntacticError("\"%\" cannot start a command, expected while or until",currentToken.spelling);
                     }

@@ -50,7 +50,7 @@ public final class Scanner {
     sourceFile = source;
     currentChar = sourceFile.getSource();
     debug = false;
-	htmlGenerator = new HTMLGenerator(source.fileName);
+    htmlGenerator = new HTMLGenerator(source.fileName);
   }
 
   public void enableDebugging() {
@@ -73,17 +73,17 @@ public final class Scanner {
     switch (currentChar) {
     case '!':
       {
-		StringBuilder comment = new StringBuilder(currentChar + "");
+        StringBuilder comment = new StringBuilder(currentChar + "");
         takeIt();
         while ((currentChar != SourceFile.EOL) && (currentChar != SourceFile.EOT)){
-			comment.append(currentChar + "");
-			takeIt();
-		}  
+            comment.append(currentChar + "");
+            takeIt();
+        }  
         if (currentChar == SourceFile.EOL){
-			takeIt();
-			htmlGenerator.addComment(comment.toString());
-			htmlGenerator.endLine();
-		}
+            takeIt();
+            htmlGenerator.addComment(comment.toString());
+            htmlGenerator.endLine();
+        }
           
       }
       break;
@@ -221,9 +221,9 @@ public final class Scanner {
            || currentChar == '\n'
            || currentChar == '\r'
            || currentChar == '\t')
-      scanSeparator();
+    scanSeparator();
 	  
-	htmlGenerator.newLine();  
+    htmlGenerator.newLine();  
 
     currentlyScanningToken = true;
     currentSpelling = new StringBuffer("");
@@ -234,8 +234,7 @@ public final class Scanner {
 
     pos.finish = sourceFile.getCurrentLine();
     tok = new Token(kind, currentSpelling.toString(), pos);
-	
-	htmlGenerator.add(tok);
+    htmlGenerator.add(tok);
 	
     if (debug)
       System.out.println(tok);

@@ -26,17 +26,17 @@ public class HTMLGenerator {
     }
 
     public void newLine(){
-            if(!lineOpened){
-                  html.append("<p>");
-                  lineOpened = true;
-            }
+        if(!lineOpened){
+              html.append("<p>");
+              lineOpened = true;
+        }
     }
 
     public void endLine(){
         if(lineOpened){
-                  html.append("</p>");
-                  lineOpened = false;
-            }
+            html.append("</p>");
+            lineOpened = false;
+        }
     }
 
     public void add(Token tok) {
