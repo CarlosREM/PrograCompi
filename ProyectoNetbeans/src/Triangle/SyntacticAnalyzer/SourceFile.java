@@ -22,7 +22,7 @@ public class SourceFile {
   java.io.File sourceFile;
   java.io.FileInputStream source;
   int currentLine;
-  public String fileName;
+  public String fileName; //Agregado
 
   public SourceFile(String filename) {
     try {

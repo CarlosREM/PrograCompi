@@ -20,14 +20,14 @@ public interface Visitor {
   public abstract Object visitAssignCommand(AssignCommand ast, Object o);
   public abstract Object visitCallCommand(CallCommand ast, Object o);
   public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
-  public abstract Object visitLoopForCommand(LoopForCommand ast, Object o);
+  public abstract Object visitLoopForCommand(LoopForCommand ast, Object o); //Nuevo
   public abstract Object visitIfCommand(IfCommand ast, Object o);
   public abstract Object visitLetCommand(LetCommand ast, Object o);
   public abstract Object visitSequentialCommand(SequentialCommand ast, Object o);
-  public abstract Object visitLoopWhileCommand(LoopWhileCommand ast, Object o);
-  public abstract Object visitLoopUntilCommand(LoopUntilCommand ast, Object o);
-  public abstract Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o);
-  public abstract Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object o);
+  public abstract Object visitLoopWhileCommand(LoopWhileCommand ast, Object o); //Modificado de visitWhileCommand
+  public abstract Object visitLoopUntilCommand(LoopUntilCommand ast, Object o); //Nuevo
+  public abstract Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o); //Nuevo
+  public abstract Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object o); //Nuevo
   
   // Expressions
   public abstract Object visitArrayExpression(ArrayExpression ast, Object o);
@@ -50,13 +50,13 @@ public interface Visitor {
   public abstract Object visitSequentialDeclaration(SequentialDeclaration ast, Object o);
   public abstract Object visitTypeDeclaration(TypeDeclaration ast, Object o);
   public abstract Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o);
-  public abstract Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o);
+  public abstract Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o); //Nuevo
   public abstract Object visitVarDeclaration(VarDeclaration ast, Object o);
-  public abstract Object visitLocalDeclaration(LocalDeclaration ast, Object o);
-  public abstract Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o);
-  public abstract Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o);
-  public abstract Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o);
-  public abstract Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o);
+  public abstract Object visitLocalDeclaration(LocalDeclaration ast, Object o); //Nuevo
+  public abstract Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o); //Nuevo
+  public abstract Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o); //Nuevo
+  public abstract Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o); //Nuevo
+  public abstract Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o); //Nuevo
 
   // Array Aggregates
   public abstract Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object o);

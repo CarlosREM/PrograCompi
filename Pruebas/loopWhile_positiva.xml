@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="yes"?>
+<Program>
+<LoopWhileCommand>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="r"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="&lt;"/>
+<IntegerExpression>
+<IntegerLiteral value="100"/>
+</IntegerExpression>
+</BinaryExpression>
+<SequentialCommand>
+<AssignCommand>
+<SimpleVname>
+<Identifier value="c"/>
+</SimpleVname>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="c"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="-"/>
+<IntegerExpression>
+<IntegerLiteral value="5"/>
+</IntegerExpression>
+</BinaryExpression>
+</AssignCommand>
+<AssignCommand>
+<SimpleVname>
+<Identifier value="f"/>
+</SimpleVname>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="c"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="+"/>
+<IntegerExpression>
+<IntegerLiteral value="7"/>
+</IntegerExpression>
+</BinaryExpression>
+</AssignCommand>
+</SequentialCommand>
+</LoopWhileCommand>
+</Program>

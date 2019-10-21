@@ -58,6 +58,7 @@ final class Token extends Object {
 
   // Token classes...
 
+  //Se agregan los de la especificacion
   public static final int
 
     // literals, identifiers, operators...
@@ -68,36 +69,36 @@ final class Token extends Object {
 
     // reserved words - must be in alphabetical order...
     AND			= 4,
-	ARRAY		= 5,
+    ARRAY		= 5,
     CONST		= 6,
     DO			= 7,
     ELSE		= 8,
     END			= 9,
-	FOR			= 10,
+    FOR			= 10,
     FUNC		= 11,
     IF			= 12,
     IN			= 13,
-	INIT		= 14,
+    INIT		= 14,
     LET			= 15,
-	LOCAL		= 16,
-	LOOP		= 17,
+    LOCAL		= 16,
+    LOOP		= 17,
     OF			= 18,
     PROC		= 19,
     RECORD		= 20,
-	RECURSIVE	= 21,
-	REPEAT		= 22,
-	SKIP		= 23,
+    RECURSIVE	= 21,
+    REPEAT		= 22,
+    SKIP		= 23,
     THEN		= 24,
-	TO			= 25,
+    TO			= 25,
     TYPE		= 26,
-	UNTIL		= 27,
+    UNTIL		= 27,
     VAR			= 28,
     WHILE		= 29,
 
     // punctuation...
     DOT			= 30,
     COLON		= 31,
-    SEMICOLON	= 32,
+    SEMICOLON           = 32,
     COMMA		= 33,
     BECOMES		= 34,
     IS			= 35,
@@ -105,8 +106,8 @@ final class Token extends Object {
     // brackets...
     LPAREN		= 36,
     RPAREN		= 37,
-    LBRACKET	= 38,
-    RBRACKET	= 39,
+    LBRACKET            = 38,
+    RBRACKET            = 39,
     LCURLY		= 40,
     RCURLY		= 41,
 
@@ -114,35 +115,36 @@ final class Token extends Object {
     EOT			= 42,
     ERROR		= 43;
 
+  //Se agregan en la posicion que corresponda con los de arriba
   private static String[] tokenTable = new String[] {
     "<int>",
     "<char>",
     "<identifier>",
     "<operator>",
-	"and",
+    "and",
     "array",
     "const",
     "do",
     "else",
     "end",
-	"for",
+    "for",
     "func",
     "if",
     "in",
-	"init",
+    "init",
     "let",
-	"local",
-	"loop",
+    "local",
+    "loop",
     "of",
     "proc",
     "record",
-	"recursive",
-	"repeat",
-	"skip",
+    "recursive",
+    "repeat",
+    "skip",
     "then",
-	"to",
+    "to",
     "type",
-	"until",
+    "until",
     "var",
     "while",
     ".",
@@ -161,9 +163,10 @@ final class Token extends Object {
     "<error>"
   };
 
-  private final static int	firstReservedWord = Token.AND,
+    private final static int	firstReservedWord = Token.AND,
   				lastReservedWord  = Token.WHILE;
 
+    //Metodos agregados
     public static int getFirstReservedWord() {
         return firstReservedWord;
     }

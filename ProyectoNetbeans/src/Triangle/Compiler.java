@@ -43,7 +43,7 @@ public class Compiler {
 
     /** The AST representing the source program. */
     private static Program theAST;
-    private static Writer writerXML;
+    private static Writer writerXML; //Agregado
 
     /**
      * Compile the source program to TAM machine code.
@@ -74,7 +74,7 @@ public class Compiler {
             System.out.println("Can't access source file " + sourceName);
             System.exit(1);
         }
-        writerXML = new Writer(sourceName);
+        writerXML = new Writer(sourceName); //Agregado
         scanner  = new Scanner(source);
         reporter = new ErrorReporter();
         parser   = new Parser(scanner, reporter);

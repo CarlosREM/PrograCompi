@@ -102,222 +102,287 @@ public class TableVisitor implements Visitor {
     public TableVisitor() {        
     }
 
-  // <editor-fold defaultstate="collapsed" desc=" Commands ">
-  // Commands
-  public Object visitAssignCommand(AssignCommand ast, Object o) { 
-      ast.V.visit(this, null);
-      ast.E.visit(this, null);
-      
-      return(null);
-  }
+    // <editor-fold defaultstate="collapsed" desc=" Commands ">
+    // Commands
+    public Object visitAssignCommand(AssignCommand ast, Object o) { 
+        ast.V.visit(this, null);
+        ast.E.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitCallCommand(CallCommand ast, Object o) { 
+        ast.I.visit(this, null);
+        ast.APS.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitEmptyCommand(EmptyCommand ast, Object o) { 
+        return(null);
+    }
   
-  public Object visitCallCommand(CallCommand ast, Object o) { 
-      ast.I.visit(this, null);
-      ast.APS.visit(this, null);
-      
-      return(null);
-  }
+    public Object visitIfCommand(IfCommand ast, Object o) { 
+        ast.E.visit(this, null);
+        ast.C1.visit(this, null);
+        ast.C2.visit(this, null);
+
+        return(null);
+    }
   
-  public Object visitEmptyCommand(EmptyCommand ast, Object o) { 
-      return(null);
-  }
+    public Object visitLetCommand(LetCommand ast, Object o) {     
+        ast.D.visit(this, null);
+        ast.C.visit(this, null);
+
+        return(null);
+    }
   
-  public Object visitIfCommand(IfCommand ast, Object o) { 
-      ast.E.visit(this, null);
-      ast.C1.visit(this, null);
-      ast.C2.visit(this, null);
-      
-      return(null);
-  }
+    public Object visitSequentialCommand(SequentialCommand ast, Object o) { 
+        ast.C1.visit(this, null);
+        ast.C2.visit(this, null);
+
+        return(null);
+    }
   
-  public Object visitLetCommand(LetCommand ast, Object o) {     
-      ast.D.visit(this, null);
-      ast.C.visit(this, null);
-      
-      return(null);
-  }
+  /*    Modificacion
+        Se cambia visitWhileCommand por visitLoopWhileCommand y los tipos de
+        los atributos del metodo
+  */
+    public Object visitLoopWhileCommand(LoopWhileCommand ast, Object o) { 
+        ast.E.visit(this, null);
+        ast.C.visit(this, null);
+
+        return(null);
+    }
   
-  public Object visitSequentialCommand(SequentialCommand ast, Object o) { 
-      ast.C1.visit(this, null);
-      ast.C2.visit(this, null);
-      
-      return(null);
-  }
+    /*  Adicion
+        Se agregan los siguientes 4 metodos. No se implementan porque para el
+        Analisis sintactico y lexico no son necesarios.
+    */
+    @Override
+    public Object visitLoopForCommand(LoopForCommand ast, Object o) {
+        return null;
+    }
+
+    @Override
+    public Object visitLoopUntilCommand(LoopUntilCommand ast, Object o) {
+        return null;
+    }
+
+    @Override
+    public Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o) {
+        return null;
+    }
+
+    @Override
+    public Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object o) {
+        return null;
+    }
   
-  public Object visitLoopWhileCommand(LoopWhileCommand ast, Object o) { 
-      ast.E.visit(this, null);
-      ast.C.visit(this, null);
-      
-      return(null);
-  }
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc=" Expressions ">
   // Expressions
-  public Object visitArrayExpression(ArrayExpression ast, Object o) { 
-      ast.AA.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitBinaryExpression(BinaryExpression ast, Object o) { 
-      ast.E1.visit(this, null);
-      ast.E2.visit(this, null);
-      ast.O.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitCallExpression(CallExpression ast, Object o) { 
-      ast.I.visit(this, null);
-      ast.APS.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitCharacterExpression(CharacterExpression ast, Object o) { 
-      ast.CL.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitEmptyExpression(EmptyExpression ast, Object o) {       
-      return(null);
-  }
-  
-  public Object visitIfExpression(IfExpression ast, Object o) {       
-      ast.E1.visit(this, null);
-      ast.E2.visit(this, null);
-      ast.E3.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitIntegerExpression(IntegerExpression ast, Object o) { 
-      return(null);
-  }
-  
-  public Object visitLetExpression(LetExpression ast, Object o) { 
-      ast.D.visit(this, null);
-      ast.E.visit(this, null);
+    public Object visitArrayExpression(ArrayExpression ast, Object o) { 
+        ast.AA.visit(this, null);
 
-      return(null);
-  }
-  
-  public Object visitRecordExpression(RecordExpression ast, Object o) {   
-      ast.RA.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitUnaryExpression(UnaryExpression ast, Object o) {    
-      ast.E.visit(this, null);
-      ast.O.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitVnameExpression(VnameExpression ast, Object o) { 
-      ast.V.visit(this, null);
-      
-      return(null);
-  }
+        return(null);
+    }
+
+    public Object visitBinaryExpression(BinaryExpression ast, Object o) { 
+        ast.E1.visit(this, null);
+        ast.E2.visit(this, null);
+        ast.O.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitCallExpression(CallExpression ast, Object o) { 
+        ast.I.visit(this, null);
+        ast.APS.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitCharacterExpression(CharacterExpression ast, Object o) { 
+        ast.CL.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitEmptyExpression(EmptyExpression ast, Object o) {       
+        return(null);
+    }
+
+    public Object visitIfExpression(IfExpression ast, Object o) {       
+        ast.E1.visit(this, null);
+        ast.E2.visit(this, null);
+        ast.E3.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitIntegerExpression(IntegerExpression ast, Object o) { 
+        return(null);
+    }
+
+    public Object visitLetExpression(LetExpression ast, Object o) { 
+        ast.D.visit(this, null);
+        ast.E.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitRecordExpression(RecordExpression ast, Object o) {   
+        ast.RA.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitUnaryExpression(UnaryExpression ast, Object o) {    
+        ast.E.visit(this, null);
+        ast.O.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitVnameExpression(VnameExpression ast, Object o) { 
+        ast.V.visit(this, null);
+
+        return(null);
+    }
   // </editor-fold>
   
   // <editor-fold defaultstate="collapsed" desc=" Declarations ">
   // Declarations
-  public Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o) {        
-      return(null);
-  }
-  
-  public Object visitConstDeclaration(ConstDeclaration ast, Object o) {   
-      String name = ast.I.spelling;
-      String type = "N/A";
-      try {
-        int size = (ast.entity!=null?ast.entity.size:0);
-        int level = -1;
-        int displacement = -1;
-        int value = -1;
-      
-        if (ast.entity instanceof KnownValue) {
-              type = "KnownValue";
-              value = ((KnownValue)ast.entity).value;
-          }
-          else if (ast.entity instanceof UnknownValue) {
-              type = "UnknownValue";
-              level = ((UnknownValue)ast.entity).address.level;
-              displacement = ((UnknownValue)ast.entity).address.displacement;
-          }
-          addIdentifier(name, type, size, level, displacement, value);
-      } catch (NullPointerException e) { }
-      
-      ast.E.visit(this, null);
-      ast.I.visit(this, null);
+    public Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o) {        
+        return(null);
+    }
 
-      return(null);
-  }
+    public Object visitConstDeclaration(ConstDeclaration ast, Object o) {   
+        String name = ast.I.spelling;
+        String type = "N/A";
+        try {
+          int size = (ast.entity!=null?ast.entity.size:0);
+          int level = -1;
+          int displacement = -1;
+          int value = -1;
+
+          if (ast.entity instanceof KnownValue) {
+                type = "KnownValue";
+                value = ((KnownValue)ast.entity).value;
+            }
+            else if (ast.entity instanceof UnknownValue) {
+                type = "UnknownValue";
+                level = ((UnknownValue)ast.entity).address.level;
+                displacement = ((UnknownValue)ast.entity).address.displacement;
+            }
+            addIdentifier(name, type, size, level, displacement, value);
+        } catch (NullPointerException e) { }
+
+        ast.E.visit(this, null);
+        ast.I.visit(this, null);
+
+        return(null);
+    }
   
-  public Object visitFuncDeclaration(FuncDeclaration ast, Object o) {    
-      try {
-      addIdentifier(ast.I.spelling, 
-              "KnownRoutine", 
-              (ast.entity!=null?ast.entity.size:0), 
-              ((KnownRoutine)ast.entity).address.level, 
-              ((KnownRoutine)ast.entity).address.displacement, 
-              -1);      
-      } catch (NullPointerException e) { }
-      ast.T.visit(this, null);            
-      ast.FPS.visit(this, null);
-      ast.E.visit(this, null);
-            
-      return(null);
-  }
+    public Object visitFuncDeclaration(FuncDeclaration ast, Object o) {    
+        try {
+        addIdentifier(ast.I.spelling, 
+                "KnownRoutine", 
+                (ast.entity!=null?ast.entity.size:0), 
+                ((KnownRoutine)ast.entity).address.level, 
+                ((KnownRoutine)ast.entity).address.displacement, 
+                -1);      
+        } catch (NullPointerException e) { }
+        ast.T.visit(this, null);            
+        ast.FPS.visit(this, null);
+        ast.E.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitProcDeclaration(ProcDeclaration ast, Object o) { 
+        try {
+        addIdentifier(ast.I.spelling, "KnownRoutine", 
+                (ast.entity!=null?ast.entity.size:0), 
+                ((KnownRoutine)ast.entity).address.level, 
+                ((KnownRoutine)ast.entity).address.displacement, 
+                -1);
+        } catch (NullPointerException e) { }
+
+        ast.FPS.visit(this, null);
+        ast.C.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitSequentialDeclaration(SequentialDeclaration ast, Object o) {   
+        ast.D1.visit(this, null);
+        ast.D2.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitTypeDeclaration(TypeDeclaration ast, Object o) { 
+        ast.T.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o) {        
+        return(null);
+    }
+
+    public Object visitVarDeclaration(VarDeclaration ast, Object o) {      
+        try {
+        addIdentifier(ast.I.spelling, 
+                "KnownAddress", 
+                (ast.entity!=null?ast.entity.size:0), 
+                ((KnownAddress)ast.entity).address.level, 
+                ((KnownAddress)ast.entity).address.displacement, 
+                -1);
+        } catch (NullPointerException e) { }
+
+        ast.T.visit(this, null);
+        return(null);
+    }
   
-  public Object visitProcDeclaration(ProcDeclaration ast, Object o) { 
-      try {
-      addIdentifier(ast.I.spelling, "KnownRoutine", 
-              (ast.entity!=null?ast.entity.size:0), 
-              ((KnownRoutine)ast.entity).address.level, 
-              ((KnownRoutine)ast.entity).address.displacement, 
-              -1);
-      } catch (NullPointerException e) { }
-      
-      ast.FPS.visit(this, null);
-      ast.C.visit(this, null);
-            
-      return(null);
-  }
+    /*  Adicion
+        Se agregan los siguientes 6 metodos. Sin implementacion porque para el
+        analisis lexico y sintactico no se necesitan.
+    */
+    
+    @Override
+    public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
+        return null;
+    }
+
+    @Override
+    public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o) {
+        return null;
+    }
+
+    @Override
+    public Object visitLocalDeclaration(LocalDeclaration ast, Object o) {
+        return null;
+    }
+
+    @Override
+    public Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o) {
+        return null;
+    }
+
+    @Override
+    public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o) {
+        return null;
+    }
+
+    @Override
+    public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
+       return null;
+    }
   
-  public Object visitSequentialDeclaration(SequentialDeclaration ast, Object o) {   
-      ast.D1.visit(this, null);
-      ast.D2.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitTypeDeclaration(TypeDeclaration ast, Object o) { 
-      ast.T.visit(this, null);
-      
-      return(null);
-  }
-  
-  public Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o) {        
-      return(null);
-  }
-  
-  public Object visitVarDeclaration(VarDeclaration ast, Object o) {      
-      try {
-      addIdentifier(ast.I.spelling, 
-              "KnownAddress", 
-              (ast.entity!=null?ast.entity.size:0), 
-              ((KnownAddress)ast.entity).address.level, 
-              ((KnownAddress)ast.entity).address.displacement, 
-              -1);
-      } catch (NullPointerException e) { }
-      
-      ast.T.visit(this, null);
-      return(null);
-  }
   
   // </editor-fold>
 
@@ -546,46 +611,46 @@ public class TableVisitor implements Visitor {
 
   // <editor-fold defaultstate="collapsed" desc=" Literals, Identifiers and Operators ">
   // Literals, Identifiers and Operators
-  public Object visitCharacterLiteral(CharacterLiteral ast, Object o) {   
-      return(null);
-  }
-  
-  public Object visitIdentifier(Identifier ast, Object o) {             
-      return(null);
-  }
-  
-  public Object visitIntegerLiteral(IntegerLiteral ast, Object o) { 
-      return(null);
-  }
-  
-  public Object visitOperator(Operator ast, Object o) { 
-      ast.decl.visit(this, null);
-  
-      return(null);
-  }
+    public Object visitCharacterLiteral(CharacterLiteral ast, Object o) {   
+        return(null);
+    }
+
+    public Object visitIdentifier(Identifier ast, Object o) {             
+        return(null);
+    }
+
+    public Object visitIntegerLiteral(IntegerLiteral ast, Object o) { 
+        return(null);
+    }
+
+    public Object visitOperator(Operator ast, Object o) { 
+        ast.decl.visit(this, null);
+
+        return(null);
+    }
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc=" Values or Variable Names ">
   // Value-or-variable names
-  public Object visitDotVname(DotVname ast, Object o) { 
-      ast.I.visit(this, null);
-      ast.V.visit(this, null);
-  
-      return(null);
-  }
-  
-  public Object visitSimpleVname(SimpleVname ast, Object o) { 
-      ast.I.visit(this, null);
-  
-      return(null);
-  }
-  
-  public Object visitSubscriptVname(SubscriptVname ast, Object o) { 
-      ast.E.visit(this, null);
-      ast.V.visit(this, null);
-  
-      return(null);
-  }
+    public Object visitDotVname(DotVname ast, Object o) { 
+        ast.I.visit(this, null);
+        ast.V.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitSimpleVname(SimpleVname ast, Object o) { 
+        ast.I.visit(this, null);
+
+        return(null);
+    }
+
+    public Object visitSubscriptVname(SubscriptVname ast, Object o) { 
+        ast.E.visit(this, null);
+        ast.V.visit(this, null);
+
+        return(null);
+    }
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc=" Table Creation Methods ">
@@ -632,54 +697,5 @@ public class TableVisitor implements Visitor {
   // <editor-fold defaultstate="collapsed" desc=" Attributes ">
     private DefaultTableModel model;
     // </editor-fold>
-
-    @Override
-    public Object visitLoopForCommand(LoopForCommand ast, Object o) {
-        return null;
-    }
-
-    @Override
-    public Object visitLoopUntilCommand(LoopUntilCommand ast, Object o) {
-        return null;
-    }
-
-    @Override
-    public Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o) {
-        return null;
-    }
-
-    @Override
-    public Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object o) {
-        return null;
-    }
     
-    @Override
-    public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
-        return null;
-    }
-
-    @Override
-    public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o) {
-        return null;
-    }
-
-    @Override
-    public Object visitLocalDeclaration(LocalDeclaration ast, Object o) {
-        return null;
-    }
-
-    @Override
-    public Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o) {
-        return null;
-    }
-
-    @Override
-    public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o) {
-        return null;
-    }
-
-    @Override
-    public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
-       return null;
-    }
 }

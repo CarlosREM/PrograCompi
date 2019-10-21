@@ -117,7 +117,22 @@ public class TreeVisitor implements Visitor {
     public Object visitLetCommand(LetCommand ast, Object obj) {
         return(createBinary("Let Command", ast.D, ast.C));
     }
+  
+    public Object visitSequentialCommand(SequentialCommand ast, Object obj) {
+        return(createBinary("Sequential Command", ast.C1, ast.C2));
+    }
     
+    /*  Modificacion
+        Se cambia visitWhileCommand por visitLoopWhileCommand
+    */
+    public Object visitLoopWhileCommand(LoopWhileCommand ast, Object obj) {
+        return(createBinary("Loop While Command", ast.E, ast.C));
+    }
+    
+    /*  Adicion
+        Se Agregan los siguientes 4 metodos provenientes de la declaracion
+        en Visitor
+    */
     @Override
     public Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o) {
         return(createBinary("Loop Do Until Command", ast.E, ast.C));
@@ -136,14 +151,6 @@ public class TreeVisitor implements Visitor {
     @Override
     public Object visitLoopUntilCommand(LoopUntilCommand ast, Object o) {
         return (createBinary("Loop Until Command", ast.E, ast.C));
-    }
-    
-    public Object visitLoopWhileCommand(LoopWhileCommand ast, Object obj) {
-        return(createBinary("Loop While Command", ast.E, ast.C));
-    }
-    
-    public Object visitSequentialCommand(SequentialCommand ast, Object obj) {
-        return(createBinary("Sequential Command", ast.C1, ast.C2));
     }
    
     // </editor-fold>
@@ -209,6 +216,30 @@ public class TreeVisitor implements Visitor {
         return(createQuaternary("Function Declaration", ast.I, ast.FPS, ast.T, ast.E));
     }
     
+    public Object visitProcDeclaration(ProcDeclaration ast, Object obj) {
+        return(createTernary("Procedure Declaration", ast.I, ast.FPS, ast.C));        
+    }
+
+    public Object visitSequentialDeclaration(SequentialDeclaration ast, Object obj) {
+        return(createBinary("Sequential Declaration", ast.D1, ast.D2));
+    }
+    
+    public Object visitTypeDeclaration(TypeDeclaration ast, Object obj) {
+        return(createBinary("Type Declaration", ast.I, ast.T));
+    }
+    
+    public Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object obj) {
+        return(createTernary("Unary Operator Declaration", ast.O, ast.ARG, ast.RES));
+    }
+    
+    public Object visitVarDeclaration(VarDeclaration ast, Object obj) {
+        return(createBinary("Variable Declaration", ast.I, ast.T));
+    }
+    
+    /*  Adicion
+        Se agregan los siguientes 6 metodos provenientes de la declaracion
+        en Visitor
+    */
     @Override
     public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o) {
         return (createBinary("Initilized Var Declaration", ast.I, ast.E));
@@ -222,10 +253,6 @@ public class TreeVisitor implements Visitor {
     @Override
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
         return (createBinary("Loop For Iterator Declaration", ast.I, ast.E));
-    }
-    
-    public Object visitProcDeclaration(ProcDeclaration ast, Object obj) {
-        return(createTernary("Procedure Declaration", ast.I, ast.FPS, ast.C));        
     }
     
     @Override
@@ -243,21 +270,6 @@ public class TreeVisitor implements Visitor {
         return (createUnary("Recursive Declaration",ast.d));
     }
     
-    public Object visitSequentialDeclaration(SequentialDeclaration ast, Object obj) {
-        return(createBinary("Sequential Declaration", ast.D1, ast.D2));
-    }
-    
-    public Object visitTypeDeclaration(TypeDeclaration ast, Object obj) {
-        return(createBinary("Type Declaration", ast.I, ast.T));
-    }
-    
-    public Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object obj) {
-        return(createTernary("Unary Operator Declaration", ast.O, ast.ARG, ast.RES));
-    }
-    
-    public Object visitVarDeclaration(VarDeclaration ast, Object obj) {
-        return(createBinary("Variable Declaration", ast.I, ast.T));
-    }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc=" Aggregates ">

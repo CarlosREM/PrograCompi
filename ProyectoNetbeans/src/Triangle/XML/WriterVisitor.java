@@ -597,7 +597,7 @@ public class WriterVisitor implements Visitor {
         return null;
     }
     
-    @Override
+    
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
         writeLineHTML("<LoopForIteratorDeclaration>");
         ast.I.visit(this, null);
@@ -659,7 +659,7 @@ public class WriterVisitor implements Visitor {
         return null;
     }
         
-    @Override
+    
     public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
         writeLineHTML("<RecursiveDeclaration>");
         ast.d.visit(this, null);

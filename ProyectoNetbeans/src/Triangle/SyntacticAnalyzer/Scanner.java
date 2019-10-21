@@ -24,7 +24,7 @@ public final class Scanner {
   private StringBuffer currentSpelling;
   private boolean currentlyScanningToken;
   
-  private HTMLGenerator htmlGenerator;
+  private HTMLGenerator htmlGenerator; //Agregado
 
   private boolean isLetter(char c) {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
@@ -50,7 +50,7 @@ public final class Scanner {
     sourceFile = source;
     currentChar = sourceFile.getSource();
     debug = false;
-    htmlGenerator = new HTMLGenerator(source.fileName);
+    htmlGenerator = new HTMLGenerator(source.fileName); //Agregado
   }
 
   public void enableDebugging() {
@@ -69,11 +69,11 @@ public final class Scanner {
   // scanSeparator skips a single separator.
 
   private void scanSeparator() {
-    htmlGenerator.newLine();
+    htmlGenerator.newLine(); //Agregado
     switch (currentChar) {
     case '!':
       {
-        StringBuilder comment = new StringBuilder(currentChar + "");
+        StringBuilder comment = new StringBuilder(currentChar + ""); //Agregado
         takeIt();
         while ((currentChar != SourceFile.EOL) && (currentChar != SourceFile.EOT)){
             comment.append(currentChar + "");
@@ -87,20 +87,20 @@ public final class Scanner {
           
       }
       break;
-
+      
     case ' ': 
-	  htmlGenerator.add(currentChar + "");
+	  htmlGenerator.add(currentChar + "");//Agregado
 	  takeIt();
 	  break;
 	case '\n': 
-	  htmlGenerator.endLine();
+	  htmlGenerator.endLine();//Agregado
 	  takeIt();
 	  break;
 	case '\r': 
 	  takeIt();
 	  break;
 	case '\t':
-	  htmlGenerator.add("&emsp;");
+	  htmlGenerator.add("&emsp;");//Agregado
       takeIt();
       break;
     }
@@ -223,7 +223,7 @@ public final class Scanner {
            || currentChar == '\t')
     scanSeparator();
 	  
-    htmlGenerator.newLine();  
+    htmlGenerator.newLine();  //Agregado
 
     currentlyScanningToken = true;
     currentSpelling = new StringBuffer("");
