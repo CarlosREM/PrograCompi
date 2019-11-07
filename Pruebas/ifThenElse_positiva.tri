@@ -1,7 +1,0 @@
-if e>20 then
-	c:=16
-else
-	d:=25
-end
-
-

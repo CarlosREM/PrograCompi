@@ -301,8 +301,7 @@ public final class Checker implements Visitor {
     TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
     idTable.enter(ast.I.spelling, ast);
     if (ast.duplicated)
-      reporter.reportError ("identifier \"%\" already declared",
-                            ast.I.spelling, ast.position);
+        reporter.reportError ("identifier \"%\" already declared", ast.I.spelling, ast.position);
     return null;
   }
 
@@ -357,9 +356,7 @@ public final class Checker implements Visitor {
     ast.T = (TypeDenoter) ast.T.visit(this, null);
     idTable.enter (ast.I.spelling, ast);
     if (ast.duplicated)
-      reporter.reportError ("identifier \"%\" already declared",
-                            ast.I.spelling, ast.position);
-
+      reporter.reportError ("identifier \"%\" already declared",ast.I.spelling, ast.position);
     return null;
   }
 
@@ -705,6 +702,7 @@ public final class Checker implements Visitor {
     return ast.type;
   }
 
+  //Cambio
   public Object visitSimpleVname(SimpleVname ast, Object o) {
     ast.variable = false;
     ast.type = StdEnvironment.errorType;
@@ -715,7 +713,14 @@ public final class Checker implements Visitor {
       if (binding instanceof ConstDeclaration) {
         ast.type = ((ConstDeclaration) binding).E.type;
         ast.variable = false;
-      } else if (binding instanceof VarDeclaration) {
+      } 
+      //Cambio initialized var declaration--------------------------------------
+        else if (binding instanceof InitializedVarDeclaration){
+          ast.type = ((InitializedVarDeclaration) binding).E.type;
+          ast.variable = true;
+      } 
+      //------------------------------------------------------------------------
+        else if (binding instanceof VarDeclaration) {
         ast.type = ((VarDeclaration) binding).T;
         ast.variable = true;
       } else if (binding instanceof ConstFormalParameter) {
@@ -948,7 +953,7 @@ public final class Checker implements Visitor {
     StdEnvironment.unequalDecl = declareStdBinaryOp("\\=", StdEnvironment.anyType, StdEnvironment.anyType, StdEnvironment.booleanType);
 
   }
-
+//Cambio Implementaciones Visitor----------------------------------------------------------------------------
     @Override
     public Object visitLoopForCommand(LoopForCommand ast, Object o) {
         return null;
@@ -956,26 +961,55 @@ public final class Checker implements Visitor {
 
     @Override
     public Object visitLoopUntilCommand(LoopUntilCommand ast, Object o) {
+       TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+        if(! eType.equals(StdEnvironment.booleanType))
+            reporter.reportError("Boolean expression expected here", "", ast.E.position);
+        ast.C.visit(this, null);
         return null;
     }
 
     @Override
     public Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o) {
+        TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+        if(! eType.equals(StdEnvironment.booleanType))
+            reporter.reportError("Boolean expression expected here", "", ast.E.position);
+        ast.C.visit(this, null);
         return null;
     }
 
     @Override
     public Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object o) {
+        TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+        if(! eType.equals(StdEnvironment.booleanType))
+            reporter.reportError("Boolean expression expected here", "", ast.E.position);
+        ast.C.visit(this, null);
         return null;
     }
 
     @Override
     public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o) {
+        TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+        idTable.enter(ast.I.spelling, ast);
+        if (ast.duplicated)
+            reporter.reportError ("identifier \"%\" already declared", ast.I.spelling, ast.position);
         return null;
     }
 
+    //Cambio
     @Override
     public Object visitLocalDeclaration(LocalDeclaration ast, Object o) {
+        idTable.openLocalHiddenScope();
+        if(ast.d1 instanceof LocalDeclaration){
+            ((LocalDeclaration) ast.d1).d1.visit(this, o);
+            ((LocalDeclaration) ast.d1).d2.visit(this, o);
+        }else{
+            ast.d1.visit(this, o);
+        }
+        idTable.closeLocalHiddenScope();
+        ast.d2.visit(this, o);
+        idTable.clearLocalHiddenScope();
+        if(ast.d1 instanceof LocalDeclaration)
+            idTable.clearLocalHiddenScope();
         return null;
     }
 

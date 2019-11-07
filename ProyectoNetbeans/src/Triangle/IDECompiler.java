@@ -59,9 +59,9 @@ public class IDECompiler {
         
         if (report.numErrors == 0) {
             writerXML.write(rootAST);//Cambios
-            //System.out.println("Contextual Analysis ...");
-            //Checker checker = new Checker(report);
-            //checker.check(rootAST);
+            System.out.println("Contextual Analysis ...");
+            Checker checker = new Checker(report);
+            checker.check(rootAST);
             if (report.numErrors == 0) {
                 //System.out.println("Code Generation ...");
                 //Encoder encoder = new Encoder(report);

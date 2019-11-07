@@ -1,6 +1,0 @@
-loop
-while r<100 do
-	c := c-5;
-	f := c+7
-repeat
-

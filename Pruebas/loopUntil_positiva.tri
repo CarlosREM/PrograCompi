@@ -1,4 +1,0 @@
-loop
-until p>2 do
-	t := f-9
-repeat
