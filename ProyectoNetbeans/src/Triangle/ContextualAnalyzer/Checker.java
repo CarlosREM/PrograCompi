@@ -956,6 +956,17 @@ public final class Checker implements Visitor {
 //Cambio Implementaciones Visitor----------------------------------------------------------------------------
     @Override
     public Object visitLoopForCommand(LoopForCommand ast, Object o) {
+        TypeDenoter e2Type = (TypeDenoter) ast.E.visit(this, null);
+        if(!(e2Type instanceof IntTypeDenoter))
+            reporter.reportError("wrong expression type, must be an integer type", "", ast.E.position);
+        
+        idTable.openScope();
+        LoopForIteratorDeclaration fcd = (LoopForIteratorDeclaration)ast.D;
+        ConstDeclaration cAST = new ConstDeclaration(fcd.I, fcd.E, fcd.position);
+        ast.D.visit(this, null);
+        cAST.visit(this, null);
+        ast.C.visit(this, null);
+        idTable.closeScope();
         return null;
     }
 
@@ -1025,6 +1036,14 @@ public final class Checker implements Visitor {
 
     @Override
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
+        TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+        VarDeclaration vAst = new VarDeclaration(ast.I, StdEnvironment.integerType, ast.position);
+        if (vAst.duplicated)
+          reporter.reportError ("identifier \"%\" already declared",
+                                vAst.I.spelling, vAst.position);
+        if(!(eType instanceof IntTypeDenoter))
+            reporter.reportError ("wrong expression type, must be an integer type",
+                                  "", ast.E.position);
         return null;
     }
 
