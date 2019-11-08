@@ -115,10 +115,17 @@ public final class Checker implements Visitor {
 
 
   public Object visitCallCommand(CallCommand ast, Object o) {
+    if(this.idTable.checkRecursiveScope()){
+        idTable.addRecursiveElement(ast);
+        return null;
+    }  
 
     Declaration binding = (Declaration) ast.I.visit(this, null);
-    if (binding == null)
-      reportUndeclared(ast.I);
+    if (binding == null){
+        if(idTable.checkRecursiveScopeClosing())
+            return false;
+        reportUndeclared(ast.I);
+    }
     else if (binding instanceof ProcDeclaration) {
       ast.APS.visit(this, ((ProcDeclaration) binding).FPS);
     } else if (binding instanceof ProcFormalParameter) {
@@ -207,11 +214,20 @@ public final class Checker implements Visitor {
   }
 
   public Object visitCallExpression(CallExpression ast, Object o) {
+    if(this.idTable.checkRecursiveScope()){
+        idTable.addRecursiveElement(ast);
+        return null;
+    }  
+
     Declaration binding = (Declaration) ast.I.visit(this, null);
-    if (binding == null) {
-      reportUndeclared(ast.I);
-      ast.type = StdEnvironment.errorType;
-    } else if (binding instanceof FuncDeclaration) {
+    
+    if (binding == null){
+        if(idTable.checkRecursiveScopeClosing())
+            return false;
+        reportUndeclared(ast.I);
+        ast.type = StdEnvironment.errorType;
+    }
+    else if (binding instanceof FuncDeclaration) {
       ast.APS.visit(this, ((FuncDeclaration) binding).FPS);
       ast.type = ((FuncDeclaration) binding).T;
     } else if (binding instanceof FuncFormalParameter) {
@@ -514,6 +530,13 @@ public final class Checker implements Visitor {
 
   public Object visitProcActualParameter(ProcActualParameter ast, Object o) {
     FormalParameter fp = (FormalParameter) o;
+    /*
+    if (binding == null){
+        if(idTable.checkRecursiveScopeClosing())
+            return false;
+        reportUndeclared(ast.I);
+        ast.type = StdEnvironment.errorType;
+    }*/
 
     Declaration binding = (Declaration) ast.I.visit(this, null);
     if (binding == null)
@@ -1026,11 +1049,14 @@ public final class Checker implements Visitor {
 
     @Override
     public Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o) {
+        ast.d1.visit(this, null);
+        ast.d2.visit(this, null);
         return null;
     }
 
     @Override
     public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o) {
+        ast.declaration.visit(this, null);
         return null;
     }
 
@@ -1049,6 +1075,9 @@ public final class Checker implements Visitor {
 
     @Override
     public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
+        this.idTable.openRecursiveScope();
+        ast.d.visit(this, null);
+        this.idTable.closeRecursiveScope(this);
         return null;
     }
 }
