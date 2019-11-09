@@ -115,17 +115,11 @@ public final class Checker implements Visitor {
 
 
   public Object visitCallCommand(CallCommand ast, Object o) {
-    if(this.idTable.checkRecursiveScope()){
-        idTable.addRecursiveElement(ast);
-        return null;
-    }  
+      
 
     Declaration binding = (Declaration) ast.I.visit(this, null);
-    if (binding == null){
-        if(idTable.checkRecursiveScopeClosing())
-            return false;
+    if (binding == null)
         reportUndeclared(ast.I);
-    }
     else if (binding instanceof ProcDeclaration) {
       ast.APS.visit(this, ((ProcDeclaration) binding).FPS);
     } else if (binding instanceof ProcFormalParameter) {
@@ -214,16 +208,9 @@ public final class Checker implements Visitor {
   }
 
   public Object visitCallExpression(CallExpression ast, Object o) {
-    if(this.idTable.checkRecursiveScope()){
-        idTable.addRecursiveElement(ast);
-        return null;
-    }  
-
-    Declaration binding = (Declaration) ast.I.visit(this, null);
+        Declaration binding = (Declaration) ast.I.visit(this, null);
     
     if (binding == null){
-        if(idTable.checkRecursiveScopeClosing())
-            return false;
         reportUndeclared(ast.I);
         ast.type = StdEnvironment.errorType;
     }
@@ -322,30 +309,48 @@ public final class Checker implements Visitor {
   }
 
   public Object visitFuncDeclaration(FuncDeclaration ast, Object o) {
-    ast.T = (TypeDenoter) ast.T.visit(this, null);
-    idTable.enter (ast.I.spelling, ast); // permits recursion
-    if (ast.duplicated)
-      reporter.reportError ("identifier \"%\" already declared",
-                            ast.I.spelling, ast.position);
-    idTable.openScope();
-    ast.FPS.visit(this, null);
-    TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
-    idTable.closeScope();
-    if (! ast.T.equals(eType))
-      reporter.reportError ("body of function \"%\" has wrong type",
-                            ast.I.spelling, ast.E.position);
+    int recursiveFlag = -1;
+    if(o instanceof Integer)
+        recursiveFlag = (int) o;
+    
+    if(recursiveFlag == -1 || recursiveFlag == 0){
+        ast.T = (TypeDenoter) ast.T.visit(this, null);
+        idTable.enter (ast.I.spelling, ast); // permits recursion
+        if (ast.duplicated)
+          reporter.reportError ("identifier \"%\" already declared",
+                                ast.I.spelling, ast.position);
+    }
+    if(recursiveFlag == -1 || recursiveFlag == 1){
+        idTable.openScope();
+        ast.FPS.visit(this, null);
+        TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+        idTable.closeScope();
+        if (! ast.T.equals(eType))
+          reporter.reportError ("body of function \"%\" has wrong type",
+                                ast.I.spelling, ast.E.position);
+    }
+
     return null;
   }
 
   public Object visitProcDeclaration(ProcDeclaration ast, Object o) {
-    idTable.enter (ast.I.spelling, ast); // permits recursion
-    if (ast.duplicated)
-      reporter.reportError ("identifier \"%\" already declared",
-                            ast.I.spelling, ast.position);
-    idTable.openScope();
-    ast.FPS.visit(this, null);
-    ast.C.visit(this, null);
-    idTable.closeScope();
+    int recursiveFlag = -1;
+    if(o instanceof Integer)
+        recursiveFlag = (int) o;
+    
+    if(recursiveFlag == -1 || recursiveFlag == 0){
+        idTable.enter (ast.I.spelling, ast); // permits recursion
+        if (ast.duplicated)
+          reporter.reportError ("identifier \"%\" already declared",
+                                ast.I.spelling, ast.position);
+    }
+    if(recursiveFlag == -1 || recursiveFlag == 1){
+        idTable.openScope();
+        ast.FPS.visit(this, null);
+        ast.C.visit(this, null);
+        idTable.closeScope();
+    }
+
     return null;
   }
 
@@ -530,13 +535,6 @@ public final class Checker implements Visitor {
 
   public Object visitProcActualParameter(ProcActualParameter ast, Object o) {
     FormalParameter fp = (FormalParameter) o;
-    /*
-    if (binding == null){
-        if(idTable.checkRecursiveScopeClosing())
-            return false;
-        reportUndeclared(ast.I);
-        ast.type = StdEnvironment.errorType;
-    }*/
 
     Declaration binding = (Declaration) ast.I.visit(this, null);
     if (binding == null)
@@ -1049,14 +1047,14 @@ public final class Checker implements Visitor {
 
     @Override
     public Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o) {
-        ast.d1.visit(this, null);
-        ast.d2.visit(this, null);
+        ast.d1.visit(this, o);
+        ast.d2.visit(this, o);
         return null;
     }
 
     @Override
     public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o) {
-        ast.declaration.visit(this, null);
+        ast.declaration.visit(this, o);
         return null;
     }
 
@@ -1075,9 +1073,10 @@ public final class Checker implements Visitor {
 
     @Override
     public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
-        this.idTable.openRecursiveScope();
-        ast.d.visit(this, null);
-        this.idTable.closeRecursiveScope(this);
+      
+        ast.d.visit(this, 0);
+        ast.d.visit(this, 1);
+        
         return null;
     }
 }
