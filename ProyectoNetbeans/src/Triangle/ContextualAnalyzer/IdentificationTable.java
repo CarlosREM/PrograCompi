@@ -15,23 +15,66 @@
 package Triangle.ContextualAnalyzer;
 
 import Triangle.AbstractSyntaxTrees.Declaration;
+import Triangle.AbstractSyntaxTrees.AST;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
 
 public final class IdentificationTable {
 
   private int level;
   private IdEntry latest;
   private boolean isPrivateScope = false; //Cambio
-
+  private Stack<List<AST>> recursiveLevels = new Stack();//cambio
+//cambio-------------------------------------------------
   public IdentificationTable () {
     level = 0;
     latest = null;
   }
+  
+  public void addRecursiveElement(AST ast){
+      this.recursiveLevels.peek().add(ast);
+  }
+  
+  public void openRecursiveScope(){
+      this.recursiveLevels.push(new ArrayList());
+  }
+  
+  public void closeRecursiveScope(Checker checker){
+      for(AST ast : recursiveLevels.peek()){
+          Object flag = ast.visit(checker, null);
+          if(flag instanceof Boolean){
+              if(!((boolean)flag)){
+                  recursiveLevels.get(recursiveLevels.size()-2).add(ast);
+                  recursiveLevels.peek().remove(ast);
+              }
+                  
+          }
+      }
+      recursiveLevels.pop();
+  }
+  
+  public boolean checkRecursiveScope(){
+      if(recursiveLevels.size()>0){
+          return true;
+      }
+      return false;
+  }
+  
+  public boolean checkRecursiveScopeClosing(){
+      if(recursiveLevels.size()>1){
+          return true;
+      }
+      return false;
+  }
+  
+//-----------------------------------------------------------
 
   // Opens a new level in the identification table, 1 higher than the
   // current topmost level.
 
   public void openScope () {
-
     level ++;
   }
   
