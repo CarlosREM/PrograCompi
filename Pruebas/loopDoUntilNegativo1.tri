@@ -1,0 +1,8 @@
+let
+	var i : Boolean
+in
+	loop
+		do c := c-5
+		until i
+	repeat
+end

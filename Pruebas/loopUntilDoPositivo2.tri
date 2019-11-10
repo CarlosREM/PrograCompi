@@ -1,0 +1,9 @@
+let
+	var i : Integer;
+	var c : Integer
+in
+	loop
+		until i>20
+		do c := c-5
+	repeat
+end

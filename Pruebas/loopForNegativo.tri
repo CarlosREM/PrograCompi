@@ -1,0 +1,9 @@
+let
+	var i : Integer;
+	var c : Char
+in
+	loop
+		for i ~ 1 to 10
+		do c := c+5
+	repeat
+end

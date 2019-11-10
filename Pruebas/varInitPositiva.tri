@@ -1,0 +1,6 @@
+let
+	var a init 500;
+	var c : Integer
+in
+	a := c + 16
+end
