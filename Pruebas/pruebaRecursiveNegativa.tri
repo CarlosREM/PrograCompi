@@ -1,0 +1,19 @@
+let 
+	var h init 3;
+	var k init 2;
+	recursive
+	   proc p (i: Integer)~ h:=z(var h); s(var k); k := a(var h); q(var h) end
+	   and
+	   proc s (var l: Integer) ~ s(var l) end
+   	and
+   	func a (var l: Integer):Integer ~ l + 4
+   	and
+   	proc s (var l: Integer) ~ r(l) end
+   	and
+   	func z (var l: Integer):Integer ~ l + 4
+		
+	end;
+	proc r (l: Integer) ~ p(l) end
+in
+	s(var k)
+end

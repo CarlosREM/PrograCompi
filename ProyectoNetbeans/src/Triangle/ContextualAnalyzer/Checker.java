@@ -319,6 +319,9 @@ public final class Checker implements Visitor {
         if (ast.duplicated)
           reporter.reportError ("identifier \"%\" already declared",
                                 ast.I.spelling, ast.position);
+        idTable.openScope();
+        ast.FPS.visit(this, null);
+        idTable.closeScope();
     }
     if(recursiveFlag == -1 || recursiveFlag == 1){
         idTable.openScope();
@@ -337,12 +340,15 @@ public final class Checker implements Visitor {
     int recursiveFlag = -1;
     if(o instanceof Integer)
         recursiveFlag = (int) o;
-    
+      
     if(recursiveFlag == -1 || recursiveFlag == 0){
         idTable.enter (ast.I.spelling, ast); // permits recursion
         if (ast.duplicated)
           reporter.reportError ("identifier \"%\" already declared",
                                 ast.I.spelling, ast.position);
+        idTable.openScope();
+        ast.FPS.visit(this, null);
+        idTable.closeScope();
     }
     if(recursiveFlag == -1 || recursiveFlag == 1){
         idTable.openScope();
@@ -354,9 +360,10 @@ public final class Checker implements Visitor {
     return null;
   }
 
+  //Cambio o se utiliza como input para las visitas de las declaraciones
   public Object visitSequentialDeclaration(SequentialDeclaration ast, Object o) {
-    ast.D1.visit(this, null);
-    ast.D2.visit(this, null);
+    ast.D1.visit(this, o);
+    ast.D2.visit(this, o);
     return null;
   }
 
@@ -497,6 +504,7 @@ public final class Checker implements Visitor {
     else if (! eType.equals(((ConstFormalParameter) fp).T))
       reporter.reportError ("wrong type for const actual parameter", "",
                             ast.E.position);
+      
     return null;
   }
 
