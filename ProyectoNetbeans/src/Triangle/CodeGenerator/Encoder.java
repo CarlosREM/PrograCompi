@@ -168,6 +168,15 @@ public final class Encoder implements Visitor {
     emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loopAddr);
     return null;
   }
+  /*
+  while E do C
+  --------------
+    jump h
+  g:execute C
+  h:evaluate E
+    jumpif(1)g
+  
+  */
 
 
   // Expressions
@@ -1014,18 +1023,71 @@ public final class Encoder implements Visitor {
 
     @Override
     public Object visitLoopUntilCommand(LoopUntilCommand ast, Object o) {
+        Frame frame = (Frame) o;
+        int jumpAddr, loopAddr;
+
+        jumpAddr = nextInstrAddr;
+        emit(Machine.JUMPop, 0, Machine.CBr, 0);
+        loopAddr = nextInstrAddr;
+        ast.C.visit(this, frame);
+        patch(jumpAddr, nextInstrAddr);
+        ast.E.visit(this, frame);
+        emit(Machine.JUMPIFop, Machine.falseRep, Machine.CBr, loopAddr);
         return null;
     }
-
+  /*
+  until E do C
+  --------------
+    jump h
+  g:execute C
+  h:evaluate E
+    jumpif(0)g
+  
+  */
+    
     @Override
     public Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o) {
+        Frame frame = (Frame) o;
+        int loopAddr;
+
+        loopAddr = nextInstrAddr;
+        ast.C.visit(this, frame);
+        ast.E.visit(this, frame);
+        emit(Machine.JUMPIFop, Machine.falseRep, Machine.CBr, loopAddr);
         return null;
     }
+  /*
+  do C until E
+  --------------
+    
+  g:execute C
+    evaluate E
+    jumpif(0)g
+  
+  */
+    
 
     @Override
     public Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object o) {
+        Frame frame = (Frame) o;
+        int loopAddr;
+
+        loopAddr = nextInstrAddr;
+        ast.C.visit(this, frame);
+        ast.E.visit(this, frame);
+        emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loopAddr);
         return null;
     }
+  /*
+  do C while E
+  --------------
+    
+  g:execute C
+    evaluate E
+    jumpif(1)g
+  
+  */
+    
 
     @Override
     public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o) {
