@@ -358,9 +358,20 @@ public class TableVisitor implements Visitor {
         return null;
     }
 
+    //Cambio
     @Override
     public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o) {
-        return null;
+        try {
+        addIdentifier(ast.I.spelling, 
+                "KnownAddress", 
+                (ast.entity!=null?ast.entity.size:0), 
+                ((KnownAddress)ast.entity).address.level, 
+                ((KnownAddress)ast.entity).address.displacement, 
+                -1);
+        } catch (NullPointerException e) { }
+
+        ast.E.visit(this, null);
+        return(null);
     }
 
     @Override

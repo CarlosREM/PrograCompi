@@ -1091,7 +1091,14 @@ public final class Encoder implements Visitor {
 
     @Override
     public Object visitInitializedVarDeclaration(InitializedVarDeclaration ast, Object o) {
-        return null;
+        Frame frame = (Frame) o;
+        int extraSize;
+        
+        extraSize = (Integer) ast.E.visit(this, frame);          
+        ast.entity = new KnownAddress(Machine.addressSize, frame.level, frame.size);
+        
+        writeTableDetails(ast);
+        return new Integer(extraSize);
     }
 
     @Override
