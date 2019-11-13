@@ -4,13 +4,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Proyecto%202/ProyectoNetbeans/src/Triangle/IDECompiler.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Proyecto%202/ProyectoNetbeans/src/GUI/Main.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Proyecto%202/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/ProcFormalParameter.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Proyecto%202/ProyectoNetbeans/src/Triangle/ContextualAnalyzer/IdentificationTable.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Proyecto%202/ProyectoNetbeans/src/Triangle/SyntacticAnalyzer/Parser.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Proyecto%202/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/SingleFormalParameterSequence.java</file>
-            <file>file:/C:/Users/Gómez%20Montero/Desktop/Proyecto%202/ProyectoNetbeans/src/Triangle/ContextualAnalyzer/Checker.java</file>
+            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/FuncDeclaration.java</file>
+            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/RecursiveDeclaration.java</file>
+            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/ContextualAnalyzer/Checker.java</file>
+            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/ContextualAnalyzer/IdentificationTable.java</file>
         </group>
     </open-files>
 </project-private>
