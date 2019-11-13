@@ -1,0 +1,5 @@
+let
+	var a init 500
+in
+	a := 'R'
+end

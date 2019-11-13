@@ -1,0 +1,13 @@
+let
+	var c : Integer
+in
+	loop
+		for i ~ 1 to 10
+		do i := b+5
+	repeat;
+	if i<5
+	then c := 5
+	else c := 2
+	end
+end
+

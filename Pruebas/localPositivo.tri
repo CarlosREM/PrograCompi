@@ -1,0 +1,11 @@
+let
+	local
+		var a : Integer;
+		var b init 16
+	in
+		var c init a+5;
+		var d init c+b+8
+	end
+in
+	d := 5+c
+end

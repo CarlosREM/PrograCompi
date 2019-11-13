@@ -1,0 +1,8 @@
+let
+	var i : Integer
+in
+	loop
+		until i
+		do c := c-5
+	repeat
+end

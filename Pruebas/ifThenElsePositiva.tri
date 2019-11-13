@@ -1,0 +1,9 @@
+let
+	var e : Integer;
+	var c : Char
+in
+	if e<20 
+	then e := e+1
+	else c:= 'F'
+	end
+end

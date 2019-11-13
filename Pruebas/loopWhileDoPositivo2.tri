@@ -1,0 +1,9 @@
+let
+	var i : Boolean;
+	var c : Integer
+in
+	loop
+		while i
+		do c := c-5
+	repeat
+end
