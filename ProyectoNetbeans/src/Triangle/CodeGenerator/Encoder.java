@@ -318,6 +318,9 @@ public final class Encoder implements Visitor {
     }
     emit(Machine.RETURNop, valSize, 0, argsSize);
     patch(jumpAddr, nextInstrAddr);
+    
+    this.recursivePatcher.patchSubscribers(ast);
+    
     return new Integer(0);
   }
 
@@ -340,6 +343,8 @@ public final class Encoder implements Visitor {
     }
     emit(Machine.RETURNop, 0, 0, argsSize);
     patch(jumpAddr, nextInstrAddr);
+    
+    this.recursivePatcher.patchSubscribers(ast);
     return new Integer(0);
   }
 
@@ -486,6 +491,17 @@ public final class Encoder implements Visitor {
       emit(Machine.LOADAop, 0, Machine.SBr, 0);
       emit(Machine.LOADAop, 0, Machine.PBr, displacement);
     }
+    
+    //if entity is null means processing recursive decl
+    else if (ast.I.decl.entity == null) { 
+      int inst = this.nextInstrAddr;
+      
+      // static link, code address
+      emit(Machine.LOADAop, 0, frame.level, -3);
+      emit(Machine.LOADAop, 0, Machine.CBr, 0);
+      
+      this.recursivePatcher.addSubscription(ast.I.decl, inst);
+    }
     return new Integer(Machine.closureSize);
   }
 
@@ -506,6 +522,17 @@ public final class Encoder implements Visitor {
       emit(Machine.LOADAop, 0, Machine.SBr, 0);
       emit(Machine.LOADAop, 0, Machine.PBr, displacement);
     }
+    //if entity is null means processing recursive decl
+    else if (ast.I.decl.entity == null) { 
+      int inst = this.nextInstrAddr;
+      
+      // static link, code address
+      emit(Machine.LOADAop, 0, frame.level, -2);
+      emit(Machine.LOADAop, 0, Machine.CBr, 0);
+      
+      this.recursivePatcher.addSubscription(ast.I.decl, inst);
+    }
+    
     return new Integer(Machine.closureSize);
   }
 
@@ -654,6 +681,14 @@ public final class Encoder implements Visitor {
       int displacement = ((EqualityRoutine) ast.decl.entity).displacement;
       emit(Machine.LOADLop, 0, 0, frame.size / 2);
       emit(Machine.CALLop, Machine.SBr, Machine.PBr, displacement);
+    } 
+    //if entity is null means processing recursive decl
+    else if (ast.decl.entity == null) { 
+      int inst = this.nextInstrAddr;
+      
+      emit(Machine.CALLop, frame.level,
+	   Machine.CBr, -1);
+      this.recursivePatcher.addSubscription(ast.decl, inst);
     }
     return null;
   }
@@ -739,10 +774,15 @@ public final class Encoder implements Visitor {
   }
 
   public Encoder (ErrorReporter reporter) {
+    this.recursivePatcher = new RecursivePatcher(this);
+    //------------------------------------------------
     this.reporter = reporter;
     nextInstrAddr = Machine.CB;
     elaborateStdEnvironment();
   }
+  
+  //object that manages recursive leaps
+  private RecursivePatcher recursivePatcher;
 
   private ErrorReporter reporter;
 
@@ -890,7 +930,7 @@ public final class Encoder implements Visitor {
 
   // Returns the register number appropriate for object code at currentLevel
   // to address a data object at objectLevel.
-  private int displayRegister (int currentLevel, int objectLevel) {
+  public int displayRegister (int currentLevel, int objectLevel) {
     if (objectLevel == 0)
       return Machine.SBr;
     else if (currentLevel - objectLevel <= 6)
@@ -899,7 +939,7 @@ public final class Encoder implements Visitor {
       reporter.reportRestriction("can't access data more than 6 levels out");
       return Machine.L6r;  // to allow code generation to continue
     }
-  }
+  }//Cambio, hecho public
 
   // Generates code to fetch the value of a named constant or variable
   // and push it on to the stack.
@@ -1108,12 +1148,23 @@ public final class Encoder implements Visitor {
 
     @Override
     public Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o) {
-        return null;
+        Frame frame = (Frame) o;
+        int extraSize1, extraSize2;
+
+        extraSize1 = ((Integer) ast.d1.visit(this, frame)).intValue();
+        Frame frame1 = new Frame (frame, extraSize1);
+        extraSize2 = ((Integer) ast.d2.visit(this, frame1)).intValue();
+        return new Integer(extraSize1 + extraSize2);
     }
 
     @Override
     public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o) {
-        return null;
+        Frame frame = (Frame) o;
+        int extraSize;
+
+        extraSize = ((Integer) ast.declaration.visit(this, frame)).intValue();
+        
+        return new Integer(extraSize);
     }
 
     @Override
@@ -1123,6 +1174,11 @@ public final class Encoder implements Visitor {
 
     @Override
     public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
-        return null;
+        Frame frame = (Frame) o;
+        int extraSize;
+
+        extraSize = ((Integer) ast.d.visit(this, frame)).intValue();
+        
+        return new Integer(extraSize);
     }
 }

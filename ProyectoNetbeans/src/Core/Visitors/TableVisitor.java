@@ -381,17 +381,26 @@ public class TableVisitor implements Visitor {
 
     @Override
     public Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o) {
-        return null;
+        ast.d1.visit(this, null);
+        ast.d2.visit(this, null);
+
+        return(null);
     }
 
     @Override
     public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o) {
-        return null;
+        ast.declaration.visit(this, null);
+        
+
+        return(null);
     }
 
     @Override
     public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
-       return null;
+        ast.d.visit(this, null);
+        
+
+        return(null);
     }
   
   
