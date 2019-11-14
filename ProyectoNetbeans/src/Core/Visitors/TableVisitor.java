@@ -376,6 +376,8 @@ public class TableVisitor implements Visitor {
 
     @Override
     public Object visitLocalDeclaration(LocalDeclaration ast, Object o) {
+        ast.d1.visit(this, null);
+        ast.d2.visit(this, null);
         return null;
     }
 

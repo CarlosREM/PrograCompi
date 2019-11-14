@@ -1143,7 +1143,14 @@ public final class Encoder implements Visitor {
 
     @Override
     public Object visitLocalDeclaration(LocalDeclaration ast, Object o) {
-        return null;
+        Frame frame = (Frame) o;
+        int extraSize1, extraSize2;
+
+        extraSize1 = ((Integer) ast.d1.visit(this, frame)).intValue();
+        Frame frame1 = new Frame (frame, extraSize1);
+        extraSize2 = ((Integer) ast.d2.visit(this, frame1)).intValue();
+        return new Integer(extraSize1 + extraSize2);
+       // return null;
     }
 
     @Override

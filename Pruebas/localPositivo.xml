@@ -1,0 +1,89 @@
+<?xml version="1.0" standalone="yes"?>
+<Program>
+<LetCommand>
+<LocalDeclaration>
+<SequentialDeclaration>
+<VarDeclaration>
+<Identifier value="a"/>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+</VarDeclaration>
+<InitializedVarDeclaration>
+<Identifier value="b"/>
+<IntegerExpression>
+<IntegerLiteral value="16"/>
+</IntegerExpression>
+</InitializedVarDeclaration>
+</SequentialDeclaration>
+<SequentialDeclaration>
+<InitializedVarDeclaration>
+<Identifier value="c"/>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="a"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="+"/>
+<IntegerExpression>
+<IntegerLiteral value="5"/>
+</IntegerExpression>
+</BinaryExpression>
+</InitializedVarDeclaration>
+<InitializedVarDeclaration>
+<Identifier value="d"/>
+<BinaryExpression>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="c"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="+"/>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="b"/>
+</SimpleVname>
+</VnameExpression>
+</BinaryExpression>
+<Operator value="+"/>
+<IntegerExpression>
+<IntegerLiteral value="8"/>
+</IntegerExpression>
+</BinaryExpression>
+</InitializedVarDeclaration>
+</SequentialDeclaration>
+</LocalDeclaration>
+<SequentialCommand>
+<AssignCommand>
+<SimpleVname>
+<Identifier value="d"/>
+</SimpleVname>
+<BinaryExpression>
+<IntegerExpression>
+<IntegerLiteral value="5"/>
+</IntegerExpression>
+<Operator value="+"/>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="c"/>
+</SimpleVname>
+</VnameExpression>
+</BinaryExpression>
+</AssignCommand>
+<CallCommand>
+<Identifier value="putint"/>
+<SingleActualParameterSequence>
+<ConstActualParameter>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="d"/>
+</SimpleVname>
+</VnameExpression>
+</ConstActualParameter>
+</SingleActualParameterSequence>
+</CallCommand>
+</SequentialCommand>
+</LetCommand>
+</Program>

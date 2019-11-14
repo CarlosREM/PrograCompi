@@ -7,5 +7,6 @@ let
 		var d init c+b+8
 	end
 in
-	d := 5+c
+	d := 5+c;
+	putint(d)
 end

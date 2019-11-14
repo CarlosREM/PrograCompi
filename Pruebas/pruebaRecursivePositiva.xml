@@ -1,0 +1,212 @@
+<?xml version="1.0" standalone="yes"?>
+<Program>
+<LetCommand>
+<SequentialDeclaration>
+<SequentialDeclaration>
+<InitializedVarDeclaration>
+<Identifier value="h"/>
+<IntegerExpression>
+<IntegerLiteral value="3"/>
+</IntegerExpression>
+</InitializedVarDeclaration>
+<InitializedVarDeclaration>
+<Identifier value="k"/>
+<IntegerExpression>
+<IntegerLiteral value="2"/>
+</IntegerExpression>
+</InitializedVarDeclaration>
+</SequentialDeclaration>
+<RecursiveDeclaration>
+<ProcFuncsDeclaration>
+<SequentialDeclaration>
+<SequentialDeclaration>
+<SequentialDeclaration>
+<ProcFuncDeclaration>
+<ProcDeclaration>
+<Identifier value="p"/>
+<SingleFormalParameterSequence>
+<ConstFormalParameter>
+<Identifier value="i"/>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+</ConstFormalParameter>
+</SingleFormalParameterSequence>
+<SequentialCommand>
+<SequentialCommand>
+<SequentialCommand>
+<AssignCommand>
+<SimpleVname>
+<Identifier value="h"/>
+</SimpleVname>
+<CallExpression>
+<Identifier value="z"/>
+<SingleActualParameterSequence>
+<VarActualParameter>
+<SimpleVname>
+<Identifier value="h"/>
+</SimpleVname>
+</VarActualParameter>
+</SingleActualParameterSequence>
+</CallExpression>
+</AssignCommand>
+<CallCommand>
+<Identifier value="s"/>
+<SingleActualParameterSequence>
+<VarActualParameter>
+<SimpleVname>
+<Identifier value="k"/>
+</SimpleVname>
+</VarActualParameter>
+</SingleActualParameterSequence>
+</CallCommand>
+</SequentialCommand>
+<AssignCommand>
+<SimpleVname>
+<Identifier value="k"/>
+</SimpleVname>
+<CallExpression>
+<Identifier value="a"/>
+<SingleActualParameterSequence>
+<VarActualParameter>
+<SimpleVname>
+<Identifier value="h"/>
+</SimpleVname>
+</VarActualParameter>
+</SingleActualParameterSequence>
+</CallExpression>
+</AssignCommand>
+</SequentialCommand>
+<CallCommand>
+<Identifier value="q"/>
+<SingleActualParameterSequence>
+<VarActualParameter>
+<SimpleVname>
+<Identifier value="h"/>
+</SimpleVname>
+</VarActualParameter>
+</SingleActualParameterSequence>
+</CallCommand>
+</SequentialCommand>
+</ProcDeclaration>
+</ProcFuncDeclaration>
+<ProcFuncDeclaration>
+<ProcDeclaration>
+<Identifier value="q"/>
+<SingleFormalParameterSequence>
+<VarFormalParameter>
+<Identifier value="l"/>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+</VarFormalParameter>
+</SingleFormalParameterSequence>
+<CallCommand>
+<Identifier value="s"/>
+<SingleActualParameterSequence>
+<VarActualParameter>
+<SimpleVname>
+<Identifier value="l"/>
+</SimpleVname>
+</VarActualParameter>
+</SingleActualParameterSequence>
+</CallCommand>
+</ProcDeclaration>
+</ProcFuncDeclaration>
+</SequentialDeclaration>
+<ProcFuncDeclaration>
+<FuncDeclaration>
+<Identifier value="a"/>
+<SingleFormalParameterSequence>
+<VarFormalParameter>
+<Identifier value="l"/>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+</VarFormalParameter>
+</SingleFormalParameterSequence>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="l"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="+"/>
+<IntegerExpression>
+<IntegerLiteral value="4"/>
+</IntegerExpression>
+</BinaryExpression>
+</FuncDeclaration>
+</ProcFuncDeclaration>
+</SequentialDeclaration>
+<ProcFuncDeclaration>
+<ProcDeclaration>
+<Identifier value="s"/>
+<SingleFormalParameterSequence>
+<VarFormalParameter>
+<Identifier value="l"/>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+</VarFormalParameter>
+</SingleFormalParameterSequence>
+<CallCommand>
+<Identifier value="p"/>
+<SingleActualParameterSequence>
+<ConstActualParameter>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="l"/>
+</SimpleVname>
+</VnameExpression>
+</ConstActualParameter>
+</SingleActualParameterSequence>
+</CallCommand>
+</ProcDeclaration>
+</ProcFuncDeclaration>
+</SequentialDeclaration>
+<ProcFuncDeclaration>
+<FuncDeclaration>
+<Identifier value="z"/>
+<SingleFormalParameterSequence>
+<VarFormalParameter>
+<Identifier value="l"/>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+</VarFormalParameter>
+</SingleFormalParameterSequence>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="l"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="+"/>
+<IntegerExpression>
+<IntegerLiteral value="4"/>
+</IntegerExpression>
+</BinaryExpression>
+</FuncDeclaration>
+</ProcFuncDeclaration>
+</ProcFuncsDeclaration>
+</RecursiveDeclaration>
+</SequentialDeclaration>
+<CallCommand>
+<Identifier value="s"/>
+<SingleActualParameterSequence>
+<VarActualParameter>
+<SimpleVname>
+<Identifier value="k"/>
+</SimpleVname>
+</VarActualParameter>
+</SingleActualParameterSequence>
+</CallCommand>
+</LetCommand>
+</Program>
