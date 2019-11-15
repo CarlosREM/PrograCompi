@@ -359,28 +359,29 @@ public class TableVisitor implements Visitor {
     @Override
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
         String name = ast.I.spelling;
-        String type = "N/A";
-        try {
-          int size = (ast.entity!=null?ast.entity.size:0);
-          int level = -1;
-          int displacement = -1;
-          int value = -1;
+        String type = "ForIterator";
+           try {
+             int d = -1;
+             int v = -1;
+             int s = (ast.entity!=null?ast.entity.size:0);
+             int l = -1;
+             
 
-          if (ast.entity instanceof KnownValue) {
-                type = "KnownValue";
-                value = ((KnownValue)ast.entity).value;
-            }
-            else if (ast.entity instanceof UnknownValue) {
-                type = "UnknownValue";
-                level = ((UnknownValue)ast.entity).address.level;
-                displacement = ((UnknownValue)ast.entity).address.displacement;
-            }
-            addIdentifier(name, type, size, level, displacement, value);
-        } catch (NullPointerException e) { }
+             if (ast.entity instanceof KnownValue) {
+                   type = "KnownValue";
+                   v = ((KnownValue)ast.entity).value;
+               }
+               else if (ast.entity instanceof UnknownValue) {
+                   type = "UnknownValue";
+                   l = ((UnknownValue)ast.entity).address.level;
+                   d= ((UnknownValue)ast.entity).address.displacement;
+               }
+               addIdentifier(name, type, s, l, d, v);
+           } catch (NullPointerException e) { }
 
-        ast.I.visit(this, null);
-        ast.E.visit(this,null);
-        return null;
+           ast.I.visit(this, null);
+           ast.E.visit(this,null);
+           return null;
         
     }
 

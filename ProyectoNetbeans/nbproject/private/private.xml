@@ -3,14 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/FuncDeclaration.java</file>
-            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/CodeGenerator/Encoder.java</file>
-            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Core/Visitors/TableVisitor.java</file>
-            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/AbstractSyntaxTrees/RecursiveDeclaration.java</file>
-            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/ContextualAnalyzer/Checker.java</file>
-            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/CodeGenerator/RecursivePatcher.java</file>
-            <file>file:/C:/Users/maryp/Documents/TEC/Compi/Proyecto%202/Progra%20Nuestra/PrograCompi1/ProyectoNetbeans/src/Triangle/ContextualAnalyzer/IdentificationTable.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

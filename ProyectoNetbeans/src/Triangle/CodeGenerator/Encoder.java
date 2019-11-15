@@ -884,6 +884,7 @@ public final class Encoder implements Visitor {
   boolean tableDetailsReqd;
 
   public static void writeTableDetails(AST ast) {
+      
   }
 
   // OBJECT CODE
@@ -1059,21 +1060,25 @@ public final class Encoder implements Visitor {
     @Override
     public Object visitLoopForCommand(LoopForCommand ast, Object o) {
       Frame frame = (Frame) o;
-      int jumpAddr, loopAddr;
-      ast.E.visit(this, frame);
-      ast.D.visit(this, frame);
-      jumpAddr = nextInstrAddr;
-      emit(Machine.JUMPop, 0, Machine.CBr, 0);
-      loopAddr = nextInstrAddr;
-     // emit(Machine.LOADop, 1, Machine.STr, -1);
-      ast.C.visit(this, frame);
-     // emit(Machine.POPop, 1, 0, 0);
-      emit(Machine.CALLop, 0, Machine.PBr, 5);
-      patch(jumpAddr, nextInstrAddr);
-      emit(Machine.LOADop, 2, Machine.STr, -2);
-      emit(Machine.CALLop, 0, Machine.PBr, 15);
-      emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loopAddr);
-      emit(Machine.POPop, 2, 0, 0);
+      int loop, jump, itrDeclaration, extraSize1, extraSize2;
+      extraSize1 = (Integer) ast.E.visit(this, frame);    
+      Frame frame1 = new Frame (frame, extraSize1);
+      itrDeclaration = nextInstrAddr;                                                                      
+      extraSize2 = (Integer) ast.D.visit(this, frame1);
+      jump = nextInstrAddr; 
+      emit(Machine.JUMPop, 0, Machine.CBr, 0);  
+      Frame frame2 = new Frame (frame, extraSize2 + extraSize1);
+      loop = nextInstrAddr; 
+      //Si le comento esta línea si imprime los unos pero a la hora de imprimir "i" se encicla e imprime una excepción
+      emit(Machine.LOADop, 1, Machine.STr, -1);
+      ast.C.visit(this, frame2);
+      emit(Machine.POPop, 1, 0, 0);
+      emit(Machine.CALLop, itrDeclaration, Machine.PBr, Machine.succDisplacement); 
+      patch(jump, nextInstrAddr); 
+      emit(Machine.LOADop, extraSize1 + extraSize2, Machine.STr, -2); 
+      emit(Machine.CALLop, Machine.SBr, Machine.PBr, Machine.geDisplacement); 
+      emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loop); 
+      emit(Machine.POPop, 0, 0, extraSize1 + extraSize2); 
       return null;
     }
 
@@ -1192,10 +1197,9 @@ public final class Encoder implements Visitor {
 
     @Override
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
-        Frame frame = (Frame) o;
-        Integer valSize = (Integer) ast.E.visit(this, frame);
-        return valSize;
-       // return null;
+      Frame frame = (Frame) o;
+      Integer n = (Integer) ast.E.visit(this, frame);
+      return n;
     }
 
     @Override
