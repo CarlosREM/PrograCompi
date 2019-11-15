@@ -884,6 +884,7 @@ public final class Encoder implements Visitor {
   boolean tableDetailsReqd;
 
   public static void writeTableDetails(AST ast) {
+      
   }
 
   // OBJECT CODE
