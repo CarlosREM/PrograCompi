@@ -1062,12 +1062,12 @@ public final class Encoder implements Visitor {
       Frame frame = (Frame) o;
       int jumpAddr, loopAddr;
       int e2Size = (Integer) ast.E.visit(this, frame);
-      ast.D.visit(this, new Frame (frame, e2Size));
+      int e1Size = (Integer) ast.D.visit(this, new Frame (frame, e2Size));
       jumpAddr = nextInstrAddr;
       emit(Machine.JUMPop, 0, Machine.CBr, 0);
       loopAddr = nextInstrAddr;
      // emit(Machine.LOADop, 1, Machine.STr, -1);
-      ast.C.visit(this, frame);
+      ast.C.visit(this, new Frame (frame, e1Size + e2Size));
      // emit(Machine.POPop, 1, 0, 0);
       emit(Machine.CALLop, 0, Machine.PBr, 5);
       patch(jumpAddr, nextInstrAddr);
