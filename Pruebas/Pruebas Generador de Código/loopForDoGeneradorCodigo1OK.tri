@@ -1,0 +1,15 @@
+let
+
+  var k init 9
+
+in
+
+  loop for i ~ 1 to k do ! determinar que k se evalúa una sola vez
+
+    k := k + 1 ; 
+
+    putint (1) ! debe imprimir 9 unos
+
+  repeat
+
+end
