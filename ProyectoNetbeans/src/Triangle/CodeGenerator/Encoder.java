@@ -1060,8 +1060,8 @@ public final class Encoder implements Visitor {
     public Object visitLoopForCommand(LoopForCommand ast, Object o) {
       Frame frame = (Frame) o;
       int jumpAddr, loopAddr;
-      ast.E.visit(this, frame);
-      ast.D.visit(this, frame);
+      int e2Size = (Integer) ast.E.visit(this, frame);
+      ast.D.visit(this, new Frame (frame, e2Size));
       jumpAddr = nextInstrAddr;
       emit(Machine.JUMPop, 0, Machine.CBr, 0);
       loopAddr = nextInstrAddr;
@@ -1070,7 +1070,8 @@ public final class Encoder implements Visitor {
      // emit(Machine.POPop, 1, 0, 0);
       emit(Machine.CALLop, 0, Machine.PBr, 5);
       patch(jumpAddr, nextInstrAddr);
-      emit(Machine.LOADop, 2, Machine.STr, -2);
+      emit(Machine.LOADop, 1, Machine.STr, -2);
+      emit(Machine.LOADop, 1, Machine.STr, -2);
       emit(Machine.CALLop, 0, Machine.PBr, 15);
       emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loopAddr);
       emit(Machine.POPop, 2, 0, 0);
@@ -1194,6 +1195,8 @@ public final class Encoder implements Visitor {
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
         Frame frame = (Frame) o;
         Integer valSize = (Integer) ast.E.visit(this, frame);
+        ast.entity = new KnownAddress(Machine.addressSize, frame.level, frame.size);
+        
         return valSize;
        // return null;
     }

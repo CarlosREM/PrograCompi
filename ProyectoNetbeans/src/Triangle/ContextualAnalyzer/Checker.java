@@ -749,6 +749,13 @@ public final class Checker implements Visitor {
           ast.variable = true;
       } 
       //------------------------------------------------------------------------
+        
+        //Cambio loop for iterator declaration--------------------------------------
+        else if (binding instanceof LoopForIteratorDeclaration){
+          ast.type = ((LoopForIteratorDeclaration) binding).E.type;
+          ast.variable = false;
+      } 
+      //------------------------------------------------------------------------
         else if (binding instanceof VarDeclaration) {
         ast.type = ((VarDeclaration) binding).T;
         ast.variable = true;
@@ -983,18 +990,20 @@ public final class Checker implements Visitor {
 
   }
 //Cambio Implementaciones Visitor----------------------------------------------------------------------------
-    @Override
+ @Override
     public Object visitLoopForCommand(LoopForCommand ast, Object o) {
         TypeDenoter e2Type = (TypeDenoter) ast.E.visit(this, null);
         if(!(e2Type instanceof IntTypeDenoter))
             reporter.reportError("wrong expression type, must be an integer type", "", ast.E.position);
-        
+      //Cambio encoder for------------------------------------------------------------------------------------------  
+   
         idTable.openScope();
-        LoopForIteratorDeclaration fcd = (LoopForIteratorDeclaration)ast.D;
-        ConstDeclaration cAST = new ConstDeclaration(fcd.I, fcd.E, fcd.position);
+        
         ast.D.visit(this, null);
-        cAST.visit(this, null);
+        
         ast.C.visit(this, null);
+      //------------------------------------------------------------------------------------------  
+ 
         idTable.closeScope();
         return null;
     }
@@ -1069,10 +1078,9 @@ public final class Checker implements Visitor {
     @Override
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
         TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
-        VarDeclaration vAst = new VarDeclaration(ast.I, StdEnvironment.integerType, ast.position);
-        if (vAst.duplicated)
-          reporter.reportError ("identifier \"%\" already declared",
-                                vAst.I.spelling, vAst.position);
+        idTable.enter(ast.I.spelling, ast);
+        if (ast.duplicated)
+            reporter.reportError ("identifier \"%\" already declared", ast.I.spelling, ast.position);
         if(!(eType instanceof IntTypeDenoter))
             reporter.reportError ("wrong expression type, must be an integer type",
                                   "", ast.E.position);
