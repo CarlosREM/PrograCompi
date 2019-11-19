@@ -1,0 +1,11 @@
+let
+  var a init 16 
+in
+  loop  
+  while a > 15 do
+    a := a - 1
+
+  repeat
+
+end
+
