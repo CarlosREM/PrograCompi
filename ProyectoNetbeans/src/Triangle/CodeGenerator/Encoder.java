@@ -169,7 +169,7 @@ public final class Encoder implements Visitor {
     return null;
   }
   /*
-  while E do C
+  execute[loop while E do C repeat]
   --------------
     jump h
   g:execute C
@@ -1066,18 +1066,33 @@ public final class Encoder implements Visitor {
       jumpAddr = nextInstrAddr;
       emit(Machine.JUMPop, 0, Machine.CBr, 0);
       loopAddr = nextInstrAddr;
-     // emit(Machine.LOADop, 1, Machine.STr, -1);
+     
       ast.C.visit(this, new Frame (frame, e1Size + e2Size));
-     // emit(Machine.POPop, 1, 0, 0);
+
       emit(Machine.CALLop, 0, Machine.PBr, 5);
       patch(jumpAddr, nextInstrAddr);
       emit(Machine.LOADop, 1, Machine.STr, -2);
       emit(Machine.LOADop, 1, Machine.STr, -2);
       emit(Machine.CALLop, 0, Machine.PBr, 15);
       emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loopAddr);
-      emit(Machine.POPop, 2, 0, 0);
+      emit(Machine.POPop, 0, 0, 2);
       return null;
     }
+    /*
+    execute[loop for D to E do C repeat]
+    --------------
+      evaluate E
+      elaborate D
+      jump h
+    g:execute C
+      CALL succ
+    h:LOAD (1) -2[ST]
+      LOAD (1) -2[ST]
+      CALL ge
+      jumpif(1) g
+      POP(0) 2
+
+  */
 
     @Override
     public Object visitLoopUntilCommand(LoopUntilCommand ast, Object o) {
@@ -1094,7 +1109,7 @@ public final class Encoder implements Visitor {
         return null;
     }
   /*
-  until E do C
+  execute [loop until E do C repeat]
   --------------
     jump h
   g:execute C
@@ -1115,7 +1130,7 @@ public final class Encoder implements Visitor {
         return null;
     }
   /*
-  do C until E
+  execute [loop do C until E repeat]
   --------------
     
   g:execute C
@@ -1137,7 +1152,7 @@ public final class Encoder implements Visitor {
         return null;
     }
   /*
-  do C while E
+  execute [loop do C while E repeat]
   --------------
     
   g:execute C
@@ -1155,9 +1170,16 @@ public final class Encoder implements Visitor {
         extraSize = (Integer) ast.E.visit(this, frame);          
         ast.entity = new KnownAddress(Machine.addressSize, frame.level, frame.size);
         
-        writeTableDetails(ast);
+       
         return new Integer(extraSize);
     }
+    /*
+  elaborate [var I init E]
+  --------------
+ 
+    evaluate E
+
+  */
 
     @Override
     public Object visitLocalDeclaration(LocalDeclaration ast, Object o) {
@@ -1170,6 +1192,14 @@ public final class Encoder implements Visitor {
         return new Integer(extraSize1 + extraSize2);
        // return null;
     }
+    /*
+  elaborate [local D1 in D2 end]
+  --------------
+ 
+    elaborate D1
+    elaborate D2
+
+  */
 
     @Override
     public Object visitProcFuncsDeclaration(ProcFuncsDeclaration ast, Object o) {
@@ -1181,6 +1211,13 @@ public final class Encoder implements Visitor {
         extraSize2 = ((Integer) ast.d2.visit(this, frame1)).intValue();
         return new Integer(extraSize1 + extraSize2);
     }
+    /*
+  elaborate [ D1 and D2]
+  --------------
+ 
+    elaborate D1
+    elaborate D2
+  */
 
     @Override
     public Object visitProcFuncDeclaration(ProcFuncDeclaration ast, Object o) {
@@ -1191,6 +1228,13 @@ public final class Encoder implements Visitor {
         
         return new Integer(extraSize);
     }
+    /*
+  elaborate [ D ]
+  --------------
+ 
+    elaborate D
+
+  */
 
     @Override
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
@@ -1201,6 +1245,13 @@ public final class Encoder implements Visitor {
         return valSize;
        // return null;
     }
+    /*
+  elaborate [ I ~ E ]
+  --------------
+ 
+    evaluate E
+    
+  */
 
     @Override
     public Object visitRecursiveDeclaration(RecursiveDeclaration ast, Object o) {
@@ -1211,4 +1262,11 @@ public final class Encoder implements Visitor {
         
         return new Integer(extraSize);
     }
+    /*
+  elaborate [recursive D end]
+  --------------
+ 
+    elaborate D
+
+  */
 }

@@ -159,6 +159,9 @@ public class TableVisitor implements Visitor {
         Se agregan los siguientes 4 metodos. No se implementan porque para el
         Analisis sintactico y lexico no son necesarios.
     */
+    /*  Modificación
+        Se implementan los métodos para la generación de código (mostrar la tabla de entidades)
+    */
     @Override
     public Object visitLoopForCommand(LoopForCommand ast, Object o) {
         ast.D.visit(this,null);
@@ -169,16 +172,22 @@ public class TableVisitor implements Visitor {
 
     @Override
     public Object visitLoopUntilCommand(LoopUntilCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C.visit(this, null);
         return null;
     }
 
     @Override
     public Object visitLoopDoUntilCommand(LoopDoUntilCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C.visit(this, null);
         return null;
     }
 
     @Override
     public Object visitLoopDoWhileCommand(LoopDoWhileCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C.visit(this, null);
         return null;
     }
   
@@ -355,7 +364,8 @@ public class TableVisitor implements Visitor {
         Se agregan los siguientes 6 metodos. Sin implementacion porque para el
         analisis lexico y sintactico no se necesitan.
     */
-    
+    // Modificación
+    // se implementan los métodos para la generación de código
     @Override
     public Object visitLoopForIteratorDeclaration(LoopForIteratorDeclaration ast, Object o) {
         try {
