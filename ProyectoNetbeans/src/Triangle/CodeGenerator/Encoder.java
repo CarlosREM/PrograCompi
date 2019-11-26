@@ -1091,7 +1091,6 @@ public final class Encoder implements Visitor {
       CALL ge
       jumpif(1) g
       POP(0) 2
-
   */
 
     @Override
