@@ -1,9 +1,0 @@
-let
-	var i : Integer;
-	var c : Integer
-in
-	loop
-		while i<25
-		do c := c-5
-	repeat
-end

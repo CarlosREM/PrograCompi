@@ -1,0 +1,12 @@
+let
+  var x : Integer
+in
+  x := 1 ;
+  loop
+  until x > x
+  do
+    putint (x);
+    put(' ');
+    x := x +1
+  repeat
+end

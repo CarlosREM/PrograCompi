@@ -1,8 +1,0 @@
-let
-	var c : Char
-in
-	loop
-		for i ~ 1 to 10
-		do c := 'F'
-	repeat
-end

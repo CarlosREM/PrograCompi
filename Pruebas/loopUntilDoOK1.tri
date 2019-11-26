@@ -1,0 +1,13 @@
+let
+  var x : Integer
+in
+  x := 1 ;
+  loop
+  until x > 5
+  do
+    putint (x);
+    putchar(' ')
+    x := x +1
+  repeat
+end
+

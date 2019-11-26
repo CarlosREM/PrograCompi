@@ -1,8 +1,0 @@
-let
-	var a init 500;
-	var c : Integer
-in
-	c := 8;
-	a := a +c + 16;
-	putint(a)
-end

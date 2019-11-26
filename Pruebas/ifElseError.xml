@@ -1,0 +1,56 @@
+<?xml version="1.0" standalone="yes"?>
+<Program>
+<LetCommand>
+<VarDeclaration>
+<Identifier value="e"/>
+<SimpleTypeDenoter>
+<Identifier value="Integer"/>
+</SimpleTypeDenoter>
+</VarDeclaration>
+<IfCommand>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="e"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="&lt;"/>
+<IntegerExpression>
+<IntegerLiteral value="2147483648"/>
+</IntegerExpression>
+</BinaryExpression>
+<AssignCommand>
+<SimpleVname>
+<Identifier value="e"/>
+</SimpleVname>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="e"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="+"/>
+<IntegerExpression>
+<IntegerLiteral value="1"/>
+</IntegerExpression>
+</BinaryExpression>
+</AssignCommand>
+<AssignCommand>
+<SimpleVname>
+<Identifier value="e"/>
+</SimpleVname>
+<BinaryExpression>
+<VnameExpression>
+<SimpleVname>
+<Identifier value="e"/>
+</SimpleVname>
+</VnameExpression>
+<Operator value="-"/>
+<IntegerExpression>
+<IntegerLiteral value="1"/>
+</IntegerExpression>
+</BinaryExpression>
+</AssignCommand>
+</IfCommand>
+</LetCommand>
+</Program>

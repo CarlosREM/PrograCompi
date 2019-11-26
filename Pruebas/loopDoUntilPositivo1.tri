@@ -1,9 +1,0 @@
-let
-	var i : Boolean;
-	var c : Integer
-in
-	loop
-		do c := c-5
-		until i
-	repeat
-end

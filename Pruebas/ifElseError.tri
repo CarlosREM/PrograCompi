@@ -1,0 +1,8 @@
+let
+	var e : Integer
+in
+	if e < 2147483648
+	then e:= e+1
+	else e:= e-1
+	end
+end

@@ -1,9 +1,0 @@
-let var i:Integer in
-i := 0;
-loop do
-putint(i);
-put(' ');
-i := i + 1
-until false
-repeat !Se encicla
-end

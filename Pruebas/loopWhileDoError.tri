@@ -1,0 +1,10 @@
+let
+  var a init 0 
+in
+  loop  
+  while a < a do
+    a := a + 1;
+    putint(a)
+  repeat
+
+end

@@ -1,9 +1,0 @@
-let
-	var e : Integer;
-	var c : Char
-in
-	if e
-	then e := e+1
-	else c:= 'F'
-	end
-end

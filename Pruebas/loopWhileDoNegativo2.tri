@@ -1,8 +1,0 @@
-let
-	var i : Integer
-in
-	loop
-		while i
-		do c := c-5
-	repeat
-end

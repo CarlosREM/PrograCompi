@@ -1,0 +1,7 @@
+let var a:Integer in
+loop for i ~ 0 to 2147483648 do
+a := i +1;
+putint(a);
+put(' ')
+repeat 
+end
